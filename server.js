@@ -4,9 +4,11 @@ var bodyParser = require('body-parser');
 var mongoose = require("mongoose");
 const cors = require('cors');
 const passport = require('passport');
+const config = require('./config/database');
 //const config = require('./config/database');
+const app = express();
 
-/*mongoose.connect(config.database)
+mongoose.connect(config.database)
 mongoose.connection.on('connected', () => {
   console.log('Connected to database '+config.database);
 });
@@ -14,9 +16,6 @@ mongoose.connection.on('connected', () => {
 mongoose.connection.on('error', (err) => {
   console.log('Database error: '+ err);
 });
-*/
-
-const app = express();
 
 // Set port
 var port = process.env.PORT || 8787;        // set the port
@@ -28,6 +27,13 @@ app.use(bodyParser.json());
 // Passport Middleware
 app.use(passport.initialize());
 app.use(passport.session());
+
+
+const users = require('./routes/users');
+app.use('/api', users);
+
+app.use('/', express.static("./"));
+
 
 app.get('/',function(request,response){
     response.sendFile(path.resolve(__dirname + '/www/index.html'));

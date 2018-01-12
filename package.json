@@ -4,7 +4,7 @@
   "description": "Find places you want to visit. Review places that you visit.",
   "main": "server.js",
   "scripts": {
-    "start":"nodemon server.js",
+    "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -27,6 +27,7 @@
     "angular-aria": "^1.6.8",
     "angular-material": "^1.1.5",
     "angular-messages": "^1.6.8",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
     "express": "^4.16.2",
