@@ -15,11 +15,6 @@ const PlaceSchema = mongoose.Schema({
   address: {
     type: String,
     required: true
-  },
-  isApproved:{
-      type: Boolean,
-      required: true,
-      default: false
   }
 });
 

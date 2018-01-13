@@ -25,28 +25,6 @@ router.route('/places')
       });
     });
 
-router.route('/places/isApproved')
-.post(function(req, res) { //CREATE APPROVED
-    var newPlace = new Place({
-      name: req.body.name,
-      type: req.body.type,
-      address: req.body.address,
-      isApproved: req.body.isApproved
-    });
-
-    newPlace.save(function(err) {
-        if (err) res.send(err);
-        res.json({ message: 'Place created successfully!'});
-    });
-});
-router.route('/places/isApproved/:bool')
-.get(function(req, res) { // GET APPROVED OR NOT APPROVED
-    Place.find({isApproved: bool}, function(err, place) {
-        if (err) res.send(err);
-        res.json(place);
-    });
-});
-
 router.route('/places/:place_id')
     .get(function(req, res) {
         Place.findById(req.params.place_id, function(err, place) {
@@ -75,18 +53,5 @@ router.route('/places/:place_id')
         });
     });
 
-
-router.route('/places/approval/:place_id')
-    .put(function(req, res) { // APPROVE OR DECLINE PLACE
-        Place.findById(req.params.place_id, function(err, place) {
-            if (err) res.send(err);
-            place.isApproved = req.body.isApproved;
-            place.save(function(err) {
-                if (err) 
-                    res.send(err);
-                res.json({ message: 'Place successfully updated!' });
-            });
-        });
-    });
 
 module.exports = router;

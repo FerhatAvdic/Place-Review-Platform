@@ -6,8 +6,6 @@ const User = require('../models/user');
 
 // Register
 router.post('/register', (req, res, next) => {
-    console.log(new User);
-    console.log(req.body);
   var newUser = new User({
     email: req.body.email,
     username: req.body.username,
