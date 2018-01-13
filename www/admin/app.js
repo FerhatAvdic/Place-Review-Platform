@@ -24,21 +24,25 @@
         }
 
         // redirect to login page if not logged in and trying to access a restricted page
-        /*$rootScope.$on('$locationChangeStart', function (event, next, current) {
-            var publicPages = ['/'];
+        $rootScope.$on('$locationChangeStart', function (event, next, current) {
+            var publicPages = ['/login'];
             var restrictedPage = publicPages.indexOf($location.path()) === -1;
             if ($localStorage.currentUser){
                 var tokenPayload = jwtHelper.decodeToken($localStorage.currentUser.token);
                 var tokenExpired = jwtHelper.isTokenExpired($localStorage.currentUser.token);
                 //console.log("token",$localStorage.currentUser.token,"tokenExpiration", tokenExpired);
-                if ((restrictedPage && tokenExpired) || !tokenPayload.isAdmin) {
+                if ((restrictedPage && tokenExpired) || !tokenPayload.role === 'admin') {
                     authService.Logout();
+                    $location.path('/login');
+                }
+                else if(!tokenExpired && tokenPayload.role === 'admin' && !restrictedPage){
+                    //if loged in admin is trying to access public pages aka login
                     $location.path('/');
                 }
             }else if (restrictedPage){
-                $location.path('/');
+                $location.path('/login');
             }
-        });*/
+        });
     });
 
 
