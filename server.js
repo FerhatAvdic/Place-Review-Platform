@@ -30,7 +30,8 @@ app.use(passport.session());
 
 
 const users = require('./routes/users');
-app.use('/api', users);
+const places = require('./routes/places');
+app.use('/api', [users, places]);
 
 app.use('/', express.static("./"));
 
