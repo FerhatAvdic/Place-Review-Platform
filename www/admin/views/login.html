@@ -1,0 +1,35 @@
+<div class="full-height" md-colors="{background: 'grey-800'}">
+    <div class="flex-center-center">
+        <form name="loginForm" ng-submit="vm.login()">
+            <md-card id="loginCard" md-colors="{background: 'orange-A200', color: 'grey-800'}">
+                <md-card-title>
+                    <md-card-title-text layout="row" layout-align="center center">
+                    <span class="md-headline">Admin Log In</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content layout="column">
+                        <md-input-container>
+                            <label>Username</label>
+                            <input ng-model="vm.username" name="username" required>
+                            <div ng-messages="projectForm.username.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
+                        </md-input-container>
+                    
+                        <md-input-container>
+                            <label>Password</label>
+                            <input ng-model="vm.password" type="password" name="password" required>
+                            <div ng-messages="projectForm.password.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
+                        </md-input-container>
+                </md-card-content>
+                <md-card-actions layout="row" layout-align="center center">
+                    <md-button class="md-raised md-primary" ng-disabled="loginForm.$invalid" type="submit">Primary</md-button>
+                </md-card-actions>
+            </md-card>
+        </form>
+            
+            
+    </div>
+</div>

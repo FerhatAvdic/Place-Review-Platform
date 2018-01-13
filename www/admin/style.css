@@ -1,0 +1,25 @@
+.div{
+    box-sizing: border-box;
+}
+.full-height{
+    height:100%;
+}
+
+.flex-center-center{
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    height: 100%;
+}
+
+#loginCard{
+    width: 400px;
+    max-width: 100%;
+    padding: 15px;
+    margin: 15px;
+}
+
+@media only screen and (max-width: 600px){
+
+}

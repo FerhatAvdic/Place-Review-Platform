@@ -38,7 +38,11 @@ app.use('/', express.static("./"));
 
 
 app.get('/',function(request,response){
-    response.sendFile(path.resolve(__dirname + '/www/index.html'));
+    response.sendFile(path.resolve(__dirname + '/www/home/index.html'));
+});
+
+app.get('/admin',function(request,response){
+  response.sendFile(path.resolve(__dirname + '/www/admin/index.html'));
 });
 
 app.listen(port);
