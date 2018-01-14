@@ -1,0 +1,19 @@
+<div flex-gt-md="70" flex-offset-gt-md="15" class="background">
+    <md-content layout="row" layout-padding layout-wrap layout-align="center start">
+            <md-card ng-repeat="place in vm.items" class="place-card">
+                <md-card-title>
+                    <md-card-title-text>
+                    <span class="md-headline">{{place.name}}</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                    <p>{{place.type}}</p>
+                    <p>{{place.address}}</p>
+                </md-card-content>
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button>Reviews</md-button>
+                </md-card-actions>
+            </md-card>
+    </md-content>
+</div>
+    

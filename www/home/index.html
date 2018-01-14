@@ -4,28 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/node_modules/angular-material/angular-material.min.css">
+
+    <link rel="stylesheet" href="./node_modules/angular-material/angular-material.min.css">
+
+    <!--No node module or no right package in node modules-->
+    <link rel="stylesheet" href="./www/common/css/normalize.css">
+    <link rel="stylesheet" href="./www/common/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="./www/home/style.css">
+    <link rel="stylesheet" href="./www/common/css/ng-table.css">
+
 
     <title>Place Quality</title>
 
-    <script src="/node_modules/angular/angular.min.js"></script> 
-    <script src="/node_modules/angular-aria/angular-aria.min.js"></script> 
-    <script src="/node_modules/angular-animate/angular-animate.min.js"></script> 
-    <script src="/node_modules/angular-material/angular-material.min.js"></script> 
+    <script src="./node_modules/angular/angular.min.js"></script> 
+    <script src="./node_modules/angular-aria/angular-aria.min.js"></script> 
+    <script src="./node_modules/angular-animate/angular-animate.min.js"></script> 
+    <script src="./node_modules/angular-material/angular-material.min.js"></script> 
+    <script src="./node_modules/angular-messages/angular-messages.min.js"></script>
+    <script src="./node_modules/ngstorage/ngStorage.min.js"></script>
+    <script src="./node_modules/ng-table/bundles/ng-table.min.js"></script>
+   
+
+    <!--No node module or no right package in node modules-->
+    <script src="./www/common/libs/angular-ui-router.min.js"></script>
+    <script src="./www/common/libs/angular-jwt.min.js"></script>
+
+
+    
 
     <script src="./www/home/app.js"></script>
-    <script src="./www/home/firstCtrl.js"></script>
+    <script src="./www/common/services/authService.js"></script>
+    <script src="./www/common/services/dataService.js"></script>
+    <script src="./www/home/controllers/loginController.js"></script>
+    <script src="./www/home/controllers/signupController.js"></script>
+    <script src="./www/home/controllers/placesController.js"></script>
+    <script src="./www/home/controllers/placeItemController.js"></script>
+    <script src="./www/home/controllers/profileController.js"></script>
+
+
 </head>
-<body ng-app="app" ng-controller="firstCtrl as vm">
-    
-    <md-input-container >
-        <label>Color</label>
-        <input ng-model="vm.color" required type="text">
-    </md-input-container>
-
-    <md-button class="btn1"> Accept </md-button>
-
-    
-    
+<body ng-app="app">
+        <md-toolbar class="fixed-navbar">
+            <div class="md-toolbar-tools">
+                <h2 flex md-truncate ui-sref="home"><a  href="">Place Quality</a></h2>
+                <md-button ui-sref="login">
+                    <a  href="">Log In</a>
+                </md-button>
+                <md-button ui-sref="signup">
+                    <a  href="">Sign Up</a>
+                </md-button>
+            </div>
+        </md-toolbar>
+    <div class="navbar-padding">
+            <ui-view ></ui-view>
+    </div> 
 </body>
 </html>

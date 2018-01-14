@@ -1,1 +1,39 @@
-<md-button class="md-raised md-primary" ng-click="vm.logout()">Primary</md-button>
+
+<md-sidenav class="md-sidenav-left" md-component-id="left-navbar" md-whiteframe="4">
+      <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">
+            <md-button class="md-icon-button fa-ng-size" aria-label="Menu" ng-click="vm.toggleLeft()">
+                <md-icon md-font-icon="fa-bars" class="fa fa-ng"></md-icon>
+            </md-button>
+            <span>Menu</span>
+        </h1>
+      </md-toolbar>
+      <md-content layout-margin layout="column" layout-align="start start">
+            <md-button ui-sref="" ng-click="vm.toggleLeft()" class="fa-ng-size">
+                    <md-icon md-font-icon="fa-home" class="fa fa-ng"></md-icon> Home
+            </md-button>
+            <md-button ui-sref=".places" ng-click="vm.toggleLeft()" class="fa-ng-size">
+                    <md-icon md-font-icon="fa-globe" class="fa fa-ng"></md-icon> Places
+            </md-button>
+            <md-button ui-sref=".suggestions" ng-click="vm.toggleLeft()" class="fa-ng-size">
+                    <md-icon md-font-icon="fa-question-circle" class="fa fa-ng"></md-icon> Suggestions
+            </md-button>
+      </md-content>
+</md-sidenav>
+
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <md-button class="md-icon-button fa-ng-size" aria-label="Menu" ng-click="vm.toggleLeft()">
+                <md-icon md-font-icon="fa-bars" class="fa fa-ng"></md-icon>
+            </md-button>
+            <h2 flex md-truncate>Admin Panel</h2>
+            <md-button class="md-icon-button fa-ng-size" ng-click="vm.logout()">
+                <md-icon md-font-icon="fa-sign-out-alt" class="fa fa-ng"></md-icon>
+            </md-button>
+        </div>
+      </md-toolbar>
+  <div layout="row" layout-margin>
+        <div flex-gt-md="70" flex-offset-gt-md="15" class="background">
+            <ui-view></ui-view>
+        </div>
+  </div>

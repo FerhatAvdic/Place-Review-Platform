@@ -1,0 +1,32 @@
+<md-button class="md-fab md-fab-bottom-right"  aria-label="Add_Place" ng-click="vm.showCreateDialog($event)">
+    <md-icon md-font-icon="fa-plus" class="fa fa-ng"></md-icon>
+</md-button>
+<md-card>
+    <md-card-title>
+    <md-card-title-text>
+        <span class="md-headline">Places</span>
+    </md-card-title-text>
+    </md-card-title>
+    <div layout="column" layout-align="center center" layout-margin>
+        <table ng-table="vm.items" class="custom-ng-table" show-filter="true">
+            <tr ng-repeat="place in $data">
+                <td title="'Name'" filter="{ name: 'text'}" sortable="'name'">
+                    {{place.name}}</td>
+                <td title="'Address'" filter="{ address: 'text'}" sortable="'address'">
+                    {{place.address}}</td>
+                <td title="'Type'" filter="{ type: 'text'}" sortable="'type'">
+                    {{place.type}}</td>
+                <td filter="" sortable="">  
+                    <md-button class="md-icon-button fa-ng-size" aria-label="Edit" ng-click="vm.showUpdateDialog($event, place)">
+                        <md-icon md-font-icon="fa-edit" class="fa fa-ng"></md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button" aria-label="Delete" ng-click="vm.showDeleteDialog($event, place)">
+                        <md-icon md-font-icon="fa-times" class="fa fa-ng"></md-icon>
+                    </md-button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</md-card>
+
+

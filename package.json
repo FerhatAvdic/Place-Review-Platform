@@ -34,11 +34,14 @@
     "cors": "^2.8.4",
     "express": "^4.16.2",
     "jsonwebtoken": "^8.1.0",
+    "md-data-table": "^2.2.0",
     "mongoose": "^4.13.9",
     "ng-table": "^3.0.1",
     "ngstorage": "^0.3.11",
     "passport": "^0.4.0",
     "passport-jwt": "^3.0.1",
-    "ui-router": "^1.0.0-alpha.3"
+    "restangular": "^1.6.1",
+    "ui-router": "^1.0.0-alpha.3",
+    "underscore": "^1.8.3"
   }
 }

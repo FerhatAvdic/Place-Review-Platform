@@ -1,6 +1,6 @@
 (function () {
 
-    var  app = angular.module('app', ['ngMaterial','ui.router','ngStorage','ngMessages', 'angular-jwt']);
+    var  app = angular.module('app', ['ngMaterial','ui.router','ngStorage','ngMessages', 'angular-jwt','ngTable',]);
 
     app.config(function ($stateProvider, $urlRouterProvider) {
         
@@ -15,6 +15,16 @@
                 url: "/",
                 templateUrl: "./www/admin/views/panel.html",
                 controller: 'panelController as vm'
+            })
+            .state('panel.places', {
+                url: "^/places",
+                templateUrl: "./www/admin/views/places.html",
+                controller: 'placesController as vm'
+            })
+            .state('panel.suggestions', {
+                url: "^/suggestions",
+                templateUrl: "./www/admin/views/suggestions.html",
+                controller: 'suggestionsController as vm'
             })
 
     }).run(function($rootScope, $http, $location, $localStorage, jwtHelper, authService) {

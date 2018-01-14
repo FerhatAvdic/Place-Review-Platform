@@ -1,0 +1,50 @@
+<md-dialog aria-label="Place" flex-gt-md="25">
+    <form name="editPlaceForm" ng-submit="vm.updateItem()">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Edit Place</h2>
+                <span flex></span>
+                <md-button class="md-icon-button fa-ng-size" ng-click="vm.cancelDialog()">
+                    <md-icon md-font-icon="fa-times" class="fa fa-ng" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content" layout="column">
+                <md-input-container>
+                    <label>Name</label>
+                    <input ng-model="vm.editItem.name" name="name" required>
+                    <div ng-messages="projectForm.name.$error">
+                        <div ng-message="required">This is required.</div>
+                    </div>
+                </md-input-container>
+                <md-input-container>
+                    <label>Address</label>
+                    <input ng-model="vm.editItem.address" name="address" required>
+                    <div ng-messages="projectForm.address.$error">
+                        <div ng-message="required">This is required.</div>
+                    </div>
+                </md-input-container>
+                <md-input-container>
+                    <label>State</label>
+                    <md-select ng-model="vm.editItem.type">
+                        <md-option disabled>
+                            <em>None</em>
+                        </md-option>
+                        <md-option ng-repeat="type in vm.types" ng-value="type">
+                            {{type}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button ng-click="vm.cancelDialog()">
+                Cancel
+            </md-button>
+            <md-button type="submit" ng-disabled="editPlaceForm.$invalid">
+                Submit
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

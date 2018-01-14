@@ -1,8 +1,5 @@
-.div{
+div{
     box-sizing: border-box;
-}
-.container{
-    
 }
 .full-height{
     height:100%;
@@ -29,6 +26,16 @@
     margin: 15px;
 }
 
-@media only screen and (max-width: 600px){
+.fixed-navbar{
+    position:fixed;
+    top: 0; left:0;
+}
+.navbar-padding{
+    height: 100%;
+    padding-top: 64px;
+}
 
+.place-card{
+    width: 300px;
+    max-width: 100%;
 }
