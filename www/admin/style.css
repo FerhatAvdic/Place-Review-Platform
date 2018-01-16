@@ -28,6 +28,19 @@
     padding: 15px;
     margin: 15px;
 }
+.table-filter{
+    margin-bottom: 10px;
+    border: 1px solid grey;
+    height: 25px;
+    padding: 0 5px;
+}
+.table-filter:focus{
+    outline-width: 0;
+}
+.table-header{
+    padding: 10px 0;
+    cursor: pointer;
+}
 
 @media only screen and (max-width: 600px){
 

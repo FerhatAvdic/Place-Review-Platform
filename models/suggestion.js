@@ -23,8 +23,8 @@ const Place = mongoose.Schema({
 
 // Suggestion Schema
 const SuggestionSchema = mongoose.Schema({
-    user: [User],
-    place: [Place],
+    user: User,
+    place: Place,
     isProcessed:{
         type: Boolean,
         default: false,

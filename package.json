@@ -28,6 +28,7 @@
     "angular-aria": "^1.6.8",
     "angular-jwt": "^0.1.9",
     "angular-material": "^1.1.5",
+    "angular-material-data-table": "^0.10.10",
     "angular-messages": "^1.6.8",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.2",

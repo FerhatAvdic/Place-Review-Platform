@@ -7,45 +7,56 @@ const Place = require('../models/place');
 
 
 router.route('/suggestions')
+    .post(function(req, res) {
+        var newSuggestion = new Suggestion({
+        user: req.body.user,
+        place: req.body.place
+        });
+
+        newSuggestion.save(function(err) {
+            if (err) res.send(err);
+            res.json({ message: 'Suggestion created successfully!'});
+        });
+    })
     .get(function(req, res) { //GET ALL UNPROCESSED
         Suggestion.find({isProcessed: false},function(err, suggestions) {
             if (err) res.send(err);
             res.json(suggestions);
         });
-    })
-    .post(function(req, res) {
-      var newSuggestion = new Suggestion({
-        user: req.body.user,
-        place: req.body.place
-      });
+    });
 
-      newSuggestion.save(function(err) {
-          if (err) res.send(err);
-          res.json({ message: 'Suggestion created successfully!'});
-      });
+router.route('/mysuggestions/:user_id')
+    .get(function(req, res) { //GET ALL BY USER
+        Suggestion.find({'user.id': mongoose.Types.ObjectId(req.params.user_id), isProcessed: false},function(err, suggestions) {
+            if (err) res.send(err);
+            res.json(suggestions);
+        });
     });
 
 router.route('/suggestions/:suggestion_id')
     .put(function(req, res) {
         Suggestion.findById(req.params.suggestion_id, function(err, suggestion) {
             if (err) res.send(err);
-            suggestion.isProcessed = req.body.isProcessed;
-            suggestion.save(function(err) {
-                if (err) 
-                    res.send(err);
-                res.json({ message: 'Suggestion successfully updated!' });
-
-                var newPlace = new Place({
-                    name: suggestion.place.name,
-                    type: suggestion.place.type,
-                    address: suggestion.place.address
-                  });
+            else{
+                suggestion.isProcessed = req.body.isProcessed;
+                suggestion.save(function(err) {
+                    if (err) res.send(err);
+                    else{
+                        var newPlace = new Place({
+                            name: suggestion.place.name,
+                            type: suggestion.place.type,
+                            address: suggestion.place.address
+                            });
+                        newPlace.save(function(err) {
+                            if (err) res.send(err);
+                            else{
+                                res.json({ message: 'Place created successfully!'});
+                            }
+                        });
+                    }
+                });
+            }
             
-                  newPlace.save(function(err) {
-                      if (err) res.send(err);
-                      res.json({ message: 'Place created successfully!'});
-                  });
-            });
         });
     })
     .delete(function(req, res) {

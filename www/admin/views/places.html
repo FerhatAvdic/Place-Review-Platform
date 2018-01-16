@@ -1,32 +1,45 @@
-<md-button class="md-fab md-fab-bottom-right"  aria-label="Add_Place" ng-click="vm.showCreateDialog($event)">
-    <md-icon md-font-icon="fa-plus" class="fa fa-ng"></md-icon>
-</md-button>
-<md-card>
-    <md-card-title>
-    <md-card-title-text>
-        <span class="md-headline">Places</span>
-    </md-card-title-text>
-    </md-card-title>
-    <div layout="column" layout-align="center center" layout-margin>
-        <table ng-table="vm.items" class="custom-ng-table" show-filter="true">
-            <tr ng-repeat="place in $data">
-                <td title="'Name'" filter="{ name: 'text'}" sortable="'name'">
-                    {{place.name}}</td>
-                <td title="'Address'" filter="{ address: 'text'}" sortable="'address'">
-                    {{place.address}}</td>
-                <td title="'Type'" filter="{ type: 'text'}" sortable="'type'">
-                    {{place.type}}</td>
-                <td filter="" sortable="">  
+<md-content>
+    <md-card>
+        <md-toolbar class="md-table-toolbar">
+            <div class="md-toolbar-tools">
+                <span>Places</span>
+            </div>
+        </md-toolbar>
+        <!-- exact table from live demo -->
+        <md-table-container>
+            <table md-table>
+                <thead md-head>
+                <tr md-row>
+                    <th md-column><div ng-click="vm.sortBy('name')" class="table-header">Name</div>
+                    <input type="text" ng-model="vm.filter.name" class="table-filter"></th>
+                    <th md-column ><div ng-click="vm.sortBy('type')" class="table-header">Type</div>
+                    <input type="text" ng-model="vm.filter.type" class="table-filter"></th>
+                    <th md-column><div ng-click="vm.sortBy('address')" class="table-header">Address</div>
+                    <input type="text"ng-model="vm.filter.address" class="table-filter"></th>
+                    <th md-column ></th>
+                </tr>
+                </thead>
+                <tbody md-body>
+                <tr md-row ng-repeat="place in vm.items | orderBy:vm.propertyName:vm.reverse | filter:vm.filter">
+                    <td md-cell >{{place.name}}</td>
+                    <td md-cell >{{place.type}}</td>
+                    <td md-cell >{{place.address}}</td>
+                    <td md-cell>
                     <md-button class="md-icon-button fa-ng-size" aria-label="Edit" ng-click="vm.showUpdateDialog($event, place)">
                         <md-icon md-font-icon="fa-edit" class="fa fa-ng"></md-icon>
                     </md-button>
                     <md-button class="md-icon-button" aria-label="Delete" ng-click="vm.showDeleteDialog($event, place)">
                         <md-icon md-font-icon="fa-times" class="fa fa-ng"></md-icon>
                     </md-button>
-                </td>
-            </tr>
-        </table>
-    </div>
-</md-card>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </md-table-container>
+    </md-card>
+   
+</md-content>
 
-
+<md-button class="md-fab md-fab-bottom-right"  aria-label="Add_Place" ng-click="vm.showCreateDialog($event)">
+    <md-icon md-font-icon="fa-plus" class="fa fa-ng"></md-icon>
+</md-button>

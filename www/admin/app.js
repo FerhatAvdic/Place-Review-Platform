@@ -1,6 +1,6 @@
 (function () {
 
-    var  app = angular.module('app', ['ngMaterial','ui.router','ngStorage','ngMessages', 'angular-jwt','ngTable',]);
+    var  app = angular.module('app', ['ngMaterial','ui.router','ngStorage','ngMessages', 'angular-jwt','md.data.table']);
 
     app.config(function ($stateProvider, $urlRouterProvider) {
         
@@ -12,12 +12,12 @@
                 controller: 'loginController as vm'
             })
             .state('panel', {
-                url: "/",
+                abstract: true,
                 templateUrl: "./www/admin/views/panel.html",
                 controller: 'panelController as vm'
             })
             .state('panel.places', {
-                url: "^/places",
+                url: "/",
                 templateUrl: "./www/admin/views/places.html",
                 controller: 'placesController as vm'
             })

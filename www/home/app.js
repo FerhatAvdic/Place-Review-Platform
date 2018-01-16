@@ -11,15 +11,15 @@
                 templateUrl: "./www/home/views/places.html",
                 controller: 'placesController as vm'
             })
-            .state('placeItem', {
-                url: "/place-item/:item_id",
+            .state('places', {
+                url: "/places/:item_id",
                 templateUrl: "./www/home/views/placeItem.html",
                 controller: 'placeItemController as vm'
             })
-            .state('profile', {
-                url: "/profile",
-                templateUrl: "./www/home/views/profile.html",
-                controller: 'profileController as vm'
+            .state('mysuggestions', {
+                url: "/mysuggestions",
+                templateUrl: "./www/home/views/mySuggestions.html",
+                controller: 'mySuggestionsController as vm'
             })
             .state('login', {
                 url: "/login",
@@ -33,7 +33,7 @@
             })
 
     })
-    /*.run(function($rootScope, $http, $location, $localStorage, jwtHelper, authService) {
+    .run(function($rootScope, $http, $location, $localStorage, jwtHelper, authService) {
         // keep user logged in after page refresh
         if ($localStorage.currentUser) {
             $http.defaults.headers.common.Authorization = $localStorage.currentUser.token;
@@ -41,11 +41,14 @@
 
         // redirect to login page if not logged in and trying to access a restricted page
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
-            var publicPages = ['/login', '/', '/place/*'];
-            var restrictedPage = publicPages.indexOf($location.path()) === -1;
+            var restrictedPages = ['/mySuggestions'];
+            var restrictedPage = restrictedPages.indexOf($location.path()) !== -1;
             if ($localStorage.currentUser){
                 var tokenPayload = jwtHelper.decodeToken($localStorage.currentUser.token);
                 var tokenExpired = jwtHelper.isTokenExpired($localStorage.currentUser.token);
+                if(tokenExpired){
+                    authService.Logout();
+                }
                 //console.log("token",$localStorage.currentUser.token,"tokenExpiration", tokenExpired);
                 if ((restrictedPage && tokenExpired) || !tokenPayload.role === 'home') {
                     authService.Logout();
@@ -59,7 +62,7 @@
                 $location.path('/login');
             }
         });
-    })*/;
+    });
 
 
 }());

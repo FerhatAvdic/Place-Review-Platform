@@ -1,17 +1,18 @@
-<div class="full-height" md-colors="{background: 'grey-800'}">
+<div class="full-height">
         <div class="flex-center-center">
-            <form name="loginForm" ng-submit="vm.login()">
-                <md-card id="loginCard" md-colors="{background: 'orange-A200', color: 'grey-800'}">
+            <form name="loginForm" ng-submit="vm.login(loginForm)">
+                <md-card id="loginCard">
                     <md-card-title>
                         <md-card-title-text layout="row" layout-align="center center">
-                        <span class="md-headline">Admin Log In</span>
+                        <span class="md-headline">Log In</span>
                         </md-card-title-text>
                     </md-card-title>
                     <md-card-content layout="column">
+                        <p>{{vm.error}}</p>
                             <md-input-container>
                                 <label>Username</label>
                                 <input ng-model="vm.username" name="username" required>
-                                <div ng-messages="projectForm.username.$error">
+                                <div ng-messages="loginForm.username.$error">
                                     <div ng-message="required">This is required.</div>
                                 </div>
                             </md-input-container>
@@ -19,7 +20,7 @@
                             <md-input-container>
                                 <label>Password</label>
                                 <input ng-model="vm.password" type="password" name="password" required>
-                                <div ng-messages="projectForm.password.$error">
+                                <div ng-messages="loginForm.password.$error">
                                     <div ng-message="required">This is required.</div>
                                 </div>
                             </md-input-container>
@@ -29,7 +30,5 @@
                     </md-card-actions>
                 </md-card>
             </form>
-                
-                
         </div>
     </div>

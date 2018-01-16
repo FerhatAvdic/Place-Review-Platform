@@ -4,7 +4,7 @@
     angular.module('app')
         .controller('placesController', placesController);
   
-    function placesController($location, authService, dataService, NgTableParams, $mdDialog) {
+    function placesController($location, authService, dataService, $mdDialog) {
         var vm = this;
 
         vm.types=['restaurant','cafe','nightlife','outdoors','art','hotel','shopping','relaxation','sport', 'other'];
@@ -14,7 +14,6 @@
             type:null
         };
         vm.editItem = null;
-        vm.items=[];
         vm.listItems = listItems;
         vm.fetchItem = fetchItem;
         vm.createItem = createItem;
@@ -25,6 +24,13 @@
         vm.showDeleteDialog = showDeleteDialog;
         vm.cancelDialog = cancelDialog;
 
+        vm.propertyName = 'name';
+        vm.reverse = true;
+        vm.sortBy = function(propertyName) {
+            vm.reverse = (vm.propertyName === propertyName) ? !vm.reverse : false;
+            vm.propertyName = propertyName;
+          };
+
         listItems();
 
         ///////
@@ -32,7 +38,7 @@
         function listItems(){
             dataService.list("places", function (res) {
                 if (res.status === 200) {
-                    vm.items = new NgTableParams({}, { dataset: res.data, counts:[]});
+                    vm.items = res.data;
                 }
                 else {
                     console.log("ERROR: ", res);

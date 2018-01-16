@@ -1,0 +1,61 @@
+<div flex-gt-md="70" flex-offset-gt-md="15" class="background">
+    <md-content layout="column" layout-padding layout-wrap layout-align="start center">
+        <form name="newPlaceForm" ng-submit="vm.createItem(newPlaceForm)">
+            <div layout="column">
+                <md-input-container>
+                    <label>Name</label>
+                    <input ng-model="vm.newItem.name" name="name" required>
+                    <div ng-messages="newPlaceForm.name.$error">
+                        <div ng-message="required">This is required.</div>
+                    </div>
+                </md-input-container>
+                <md-input-container>
+                    <label>Address</label>
+                    <input ng-model="vm.newItem.address" name="address" required>
+                    <div ng-messages="newPlaceForm.address.$error">
+                        <div ng-message="required">This is required.</div>
+                    </div>
+                </md-input-container>
+                <md-input-container>
+                    <label>Type</label>
+                    <md-select ng-model="vm.newItem.type" name="type" required>
+                        <md-option disabled><em>None</em></md-option>
+                        <md-option ng-repeat="type in vm.types" ng-value="type">
+                        {{type}}
+                        </md-option>
+                    </md-select>
+                    <div ng-messages="newPlaceForm.type.$error">
+                        <div ng-message="required">This is required.</div>
+                    </div>
+                </md-input-container>
+            </div>
+            <md-button ng-click="vm.cancelItem(newPlaceForm)">
+                Cancel
+            </md-button>
+            <md-button type="submit" ng-disabled="newPlaceForm.$invalid" >
+                Submit
+            </md-button>
+        </form>
+        <table>
+            <thead>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Address</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="s in vm.mySuggestions">
+                    <td>{{s.place.name}}</td>
+                    <td>{{s.place.type}}</td>
+                    <td>{{s.place.address}}</td>
+                    <td>
+                        <md-button class="md-icon-button" aria-label="Delete" ng-click="vm.deleteItem(s._id)">
+                            <md-icon md-font-icon="fa-times" class="fa fa-ng"></md-icon>
+                        </md-button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </md-content>
+</div>
+
+            

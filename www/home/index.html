@@ -35,22 +35,29 @@
     <script src="./www/home/app.js"></script>
     <script src="./www/common/services/authService.js"></script>
     <script src="./www/common/services/dataService.js"></script>
+    <script src="./www/home/controllers/navController.js"></script>
     <script src="./www/home/controllers/loginController.js"></script>
     <script src="./www/home/controllers/signupController.js"></script>
     <script src="./www/home/controllers/placesController.js"></script>
     <script src="./www/home/controllers/placeItemController.js"></script>
-    <script src="./www/home/controllers/profileController.js"></script>
+    <script src="./www/home/controllers/mySuggestionsController.js"></script>
 
 
 </head>
 <body ng-app="app">
-        <md-toolbar class="fixed-navbar">
+        <md-toolbar class="fixed-navbar" ng-controller="navController as vm">
             <div class="md-toolbar-tools">
-                <h2 flex md-truncate ui-sref="home"><a  href="">Place Quality</a></h2>
-                <md-button ui-sref="login">
+                <h2 flex md-truncate ><a  href="" ui-sref="home">Place Quality</a></h2>
+                <md-button ui-sref="mysuggestions" ng-if="vm.user_id">
+                    <a  href="">My Suggestions</a>
+                </md-button>
+                <md-button class="md-icon-button fa-ng-size" ng-click="vm.logout()" ng-if="vm.user_id">
+                        <md-icon md-font-icon="fa-sign-out-alt" class="fa fa-ng"></md-icon>
+                    </md-button>
+                <md-button ui-sref="login" ng-if="!vm.user_id">
                     <a  href="">Log In</a>
                 </md-button>
-                <md-button ui-sref="signup">
+                <md-button ui-sref="signup" ng-if="!vm.user_id">
                     <a  href="">Sign Up</a>
                 </md-button>
             </div>

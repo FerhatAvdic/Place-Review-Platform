@@ -7,11 +7,11 @@
                     </md-card-title-text>
                 </md-card-title>
                 <md-card-content>
-                    <p>{{place.type}}</p>
+                    <strong><em>{{place.type}}</em></strong>
                     <p>{{place.address}}</p>
                 </md-card-content>
                 <md-card-actions layout="row" layout-align="end center">
-                    <md-button>Reviews</md-button>
+                    <md-button ui-sref="places({item_id: place._id})">Reviews</md-button>
                 </md-card-actions>
             </md-card>
     </md-content>

@@ -9,7 +9,7 @@ const User = mongoose.Schema({
 
 // Review Schema
 const ReviewSchema = mongoose.Schema({
-    user: [User],
+    user: User,
     place_id: Schema.Types.ObjectId,
     rating: {
         type: Number,

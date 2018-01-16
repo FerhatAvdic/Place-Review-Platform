@@ -1,1 +1,47 @@
-dsfdsfds
+<div class="full-height">
+        <div class="flex-center-center">
+            <form name="signupForm" ng-submit="vm.signup()">
+                <md-card id="loginCard">
+                    <md-card-title>
+                        <md-card-title-text layout="row" layout-align="center center">
+                        <span class="md-headline">Sign Up</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-content layout="column">
+                            <md-input-container>
+                                <label>Username</label>
+                                <input ng-model="vm.newUser.username" name="username" required>
+                                <div ng-messages="signupForm.username.$error">
+                                    <div ng-message="required">This is required.</div>
+                                </div>
+                            </md-input-container>
+                            <md-input-container>
+                                    <label>Email</label>
+                                    <input ng-model="vm.newUser.email" type="email" name="email" required>
+                                    <div ng-messages="signupForm.email.$error">
+                                        <div ng-message="required">This is required.</div>
+                                        <div ng-message="email">Invalid Email.</div>
+                                    </div>
+                                </md-input-container>
+                            <md-input-container>
+                                <label>Password</label>
+                                <input ng-model="vm.newUser.password" type="password" name="password" required>
+                                <div ng-messages="signupForm.password.$error">
+                                    <div ng-message="required">This is required.</div>
+                                </div>
+                            </md-input-container>
+                            <md-input-container>
+                                <label>Address</label>
+                                <input ng-model="vm.newUser.address" name="address" required>
+                                <div ng-messages="signupForm.address.$error">
+                                    <div ng-message="required">This is required.</div>
+                                </div>
+                            </md-input-container>
+                    </md-card-content>
+                    <md-card-actions layout="row" layout-align="center center">
+                        <md-button class="md-raised md-primary" ng-disabled="loginForm.$invalid" type="submit">Submit</md-button>
+                    </md-card-actions>
+                </md-card>
+            </form>
+        </div>
+    </div>

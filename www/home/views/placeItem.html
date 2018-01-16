@@ -1,1 +1,47 @@
-sdasd
+<div flex-gt-md="70" flex-offset-gt-md="15" class="background">
+        <md-content layout="column" layout-padding layout-wrap layout-align="center center">
+                <md-card>
+                    <md-card-title>
+                        <md-card-title-text>
+                        <span class="md-headline">{{vm.place.name}}</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-content>
+                        <p>{{vm.place.type}}</p>
+                        <p>{{vm.place.address}}</p>
+                    </md-card-content>
+                </md-card>
+                <h3 class="display-3">Reviews</h3>
+                <form name="newReviewForm" ng-submit="vm.createReview(newReviewForm)" novalidate ng-if="vm.user_id">
+                    <md-input-container>
+                        <label>Rating</label>
+                        <input ng-model="vm.newReview.rating" name="rating" type="number" min="1" max="5" required>
+                        <div ng-messages="newReviewForm.rating.$error">
+                            <div ng-message="required">This is required.</div>
+                            <div ng-message="max">Maximum value is 5.</div>
+                            <div ng-message="min">Minimum value is 1.</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <label>Review</label>
+                        <textarea ng-model="vm.newReview.body" name="body" md-maxlength="150" rows="5" md-select-on-focus required></textarea>
+                        <div ng-messages="newReviewForm.body.$error">
+                            <div ng-message="required">This is required.</div>
+                        </div>
+                    </md-input-container>
+                    <md-button class="md-raised md-primary" type="button" ng-click="vm.cancelReview(newReviewForm)">Clear</md-button>
+                    <md-button class="md-raised md-primary" type="submit" ng-disabled="newReviewForm.$invalid">Submit</md-button>
+                </form>
+                <md-card ng-repeat="review in vm.reviews">
+                    <md-card-title>
+                        <md-card-title-text>
+                        <span class="md-headline">{{review.user.username}}</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-content>
+                        <p>{{review.rating}}</p>
+                        <p>{{review.body}}</p>
+                    </md-card-content>
+                </md-card>
+        </md-content>
+    </div>
