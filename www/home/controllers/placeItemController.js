@@ -82,11 +82,16 @@
         };
 
         function cancelReview(form){
-            vm.newReview.rating = null;
-            vm.newReview.body = null;
-            
+            vm.newReview=null;
             form.$setPristine();
             form.$setUntouched();
+            
+            vm.newReview = {
+                user: null,
+                place_id: null,
+                rating: null,
+                body: null
+            }
         };
     }
   })();

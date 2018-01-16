@@ -1,6 +1,6 @@
 (function () {
 
-    var  app = angular.module('app', ['ngMaterial','ui.router','ngStorage','ngMessages', 'angular-jwt','ngTable',]);
+    var  app = angular.module('app', ['ngMaterial','ui.router','ngStorage','ngMessages', 'angular-jwt', 'md.data.table']);
 
     app.config(function ($stateProvider, $urlRouterProvider) {
         

@@ -1,8 +1,11 @@
 .div{
     box-sizing: border-box;
 }
-.container{
-    
+.background{
+    background-image: url('./admin-bg.jpg');
+    background-attachment: fixed;
+    background-size:cover;
+    min-height:100%;
 }
 .full-height{
     height:100%;
@@ -42,6 +45,6 @@
     cursor: pointer;
 }
 
-@media only screen and (max-width: 600px){
-
+md-content{
+    background-color:transparent;
 }

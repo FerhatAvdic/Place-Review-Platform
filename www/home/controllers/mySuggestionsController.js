@@ -17,6 +17,13 @@
         vm.cancelItem = cancelItem;
         vm.deleteItem = deleteItem;
 
+        vm.propertyName = 'place.name';
+        vm.reverse = true;
+        vm.sortBy = function(propertyName) {
+            vm.reverse = (vm.propertyName === propertyName) ? !vm.reverse : false;
+            vm.propertyName = propertyName;
+          };
+
         listItems();
 
         /////
