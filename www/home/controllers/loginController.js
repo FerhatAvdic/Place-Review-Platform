@@ -13,8 +13,8 @@
                 console.log("result",result);
                 if (result === true) {
                     form.$setPristine();
-                    $state.go('home');
                     $window.location.reload();
+                    
                 } else {
                     vm.error = 'Username or password is incorrect';
                     form.$setPristine();

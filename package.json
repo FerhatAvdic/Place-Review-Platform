@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha || true"
   },
   "repository": {
     "type": "git",
@@ -40,6 +40,11 @@
     "ngstorage": "^0.3.11",
     "passport": "^0.4.0",
     "passport-jwt": "^3.0.1",
+    "selenium-webdriver": "^4.0.0-alpha.1",
     "ui-router": "^1.0.0-alpha.3"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^4.1.0"
   }
 }

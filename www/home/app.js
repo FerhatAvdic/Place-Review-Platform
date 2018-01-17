@@ -50,11 +50,11 @@
                     authService.Logout();
                 }
                 //console.log("token",$localStorage.currentUser.token,"tokenExpiration", tokenExpired);
-                if ((restrictedPage && tokenExpired) || !tokenPayload.role === 'home') {
+                if ((restrictedPage && tokenExpired) || !tokenPayload.role === 'user') {
                     authService.Logout();
                     $location.path('/login');
                 }
-                else if(!tokenExpired && tokenPayload.role === 'home' && !restrictedPage){
+                else if(!tokenExpired && ($location.path()==='/login' || $location.path() === '/signup')){
                     //if loged in home is trying to access public pages aka login
                     $location.path('/');
                 }

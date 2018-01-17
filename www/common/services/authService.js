@@ -44,7 +44,6 @@
                         // add jwt token to auth header for all requests made by the $http service
                         $http.defaults.headers.common.Authorization = response.data.token;
                         console.log("Authorization header: ", $http.defaults.headers.common.Authorization);
-
                         // execute callback with true to indicate successful login
                         callback(true);
                     } else {
