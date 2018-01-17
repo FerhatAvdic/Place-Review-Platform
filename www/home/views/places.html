@@ -1,6 +1,29 @@
-<div flex-gt-md="80" flex-offset-gt-md="10" class="background">
+
+
+<div flex-gt-md="80" flex-offset-gt-md="10">
     <md-content layout="row" layout-padding layout-wrap layout-align="center">
-            <md-card ng-repeat="place in vm.items" class="place-card" trackBy="$index">
+            <md-card flex="95">
+                <div layout="row" layout-padding layout-wrap layout-align="center">
+                    <md-input-container flex="25" flex-xs="100">
+                        <label>Type</label>
+                        <md-select ng-model="vm.filter.type" name="type">
+                            <md-option ng-value=""><em>All</em></md-option>
+                            <md-option ng-repeat="type in vm.types" ng-value="type">
+                            {{type}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container flex="25" flex-xs="100">
+                        <label>Name</label>
+                        <input ng-model="vm.filter.name" name="filter">
+                    </md-input-container>
+                    <md-input-container flex="50" flex-xs="100">
+                        <label>Address</label>
+                        <input ng-model="vm.filter.address" name="filter">
+                    </md-input-container>
+                </div>
+            </md-card>
+            <md-card ng-repeat="place in vm.items | filter:vm.filter" class="place-card" trackBy="$index">
                 <ng-map ng-if="false" id="{{place._id}}" zoom="16" center="{{place.address}}">
                     <marker ng-if="place.address" position="{{place.address}}" title="{{place.address}}"></marker>
                 </ng-map>

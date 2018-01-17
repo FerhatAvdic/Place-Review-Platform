@@ -30,7 +30,7 @@
                                 </md-input-container>
                                 <md-input-container class="md-block">
                                     <label>Review</label>
-                                    <textarea ng-model="vm.newReview.body" name="body" md-maxlength="150" rows="5" md-select-on-focus required></textarea>
+                                    <textarea ng-model="vm.newReview.body" name="body" rows="5" md-select-on-focus required></textarea>
                                     <div ng-messages="newReviewForm.body.$error">
                                         <div ng-message="required">This is required.</div>
                                     </div>
@@ -57,7 +57,43 @@
                                 </md-card-title-text>
                             </md-card-title>
                             <md-card-content>
-                                <p>{{review.rating}}</p>
+                                <div ng-if="review.rating === 5">
+                                    <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
+                                    <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
+                                    <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
+                                    <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
+                                    <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
+                                </div>
+                                <div ng-if="review.rating === 4">
+                                        <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
+                                        <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
+                                        <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
+                                        <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
+                                        <md-icon md-font-icon="fa-star" class="far fa-ng"></md-icon>
+                                </div>
+                                    
+                                <div ng-if="review.rating === 3">
+                                    <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
+                                    <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
+                                    <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
+                                    <md-icon md-font-icon="fa-star" class="far fa-ng"></md-icon>
+                                    <md-icon md-font-icon="fa-star" class="far fa-ng"></md-icon>
+                                </div>
+                                <div ng-if="review.rating === 2">
+                                        <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
+                                        <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
+                                        <md-icon md-font-icon="fa-star" class="far fa-ng"></md-icon>
+                                        <md-icon md-font-icon="fa-star" class="far fa-ng"></md-icon>
+                                        <md-icon md-font-icon="fa-star" class="far fa-ng"></md-icon>
+                                </div>
+                                <div ng-if="review.rating === 1">
+                                        <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
+                                        <md-icon md-font-icon="fa-star" class="far fa-ng"></md-icon>
+                                        <md-icon md-font-icon="fa-star" class="far fa-ng"></md-icon>
+                                        <md-icon md-font-icon="fa-star" class="far fa-ng"></md-icon>
+                                        <md-icon md-font-icon="fa-star" class="far fa-ng"></md-icon>
+                                </div>
+                                    
                                 <p>{{review.body}}</p>
                             </md-card-content>
                         </md-card>

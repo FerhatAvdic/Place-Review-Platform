@@ -7,6 +7,9 @@
     function placesController($location, dataService) {
         var vm = this;
         vm.items=[];
+        vm.types = ['restaurant','cafe','nightlife','outdoors','art','hotel','shopping','relaxation','sport', 'other'];
+
+        
         
         
         listItems();
