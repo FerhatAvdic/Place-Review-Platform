@@ -4,7 +4,7 @@
   "description": "Find places you want to visit. Review places that you visit.",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "node server.js",
     "test": "mocha || true"
   },
   "repository": {
