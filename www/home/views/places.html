@@ -1,8 +1,8 @@
 <div flex-gt-md="80" flex-offset-gt-md="10" class="background">
     <md-content layout="row" layout-padding layout-wrap layout-align="center">
-            <md-card ng-repeat="place in vm.items" class="place-card">
-                <ng-map id="{{place._id}}" zoom="11" center="{{place.address}}">
-                    <marker position="{{place.address}}" title="{{place.address}}"></marker>
+            <md-card ng-repeat="place in vm.items" class="place-card" trackBy="$index">
+                <ng-map ng-if="false" id="{{place._id}}" zoom="16" center="{{place.address}}">
+                    <marker ng-if="place.address" position="{{place.address}}" title="{{place.address}}"></marker>
                 </ng-map>
                 <md-card-title>
                     <md-card-title-text>
@@ -10,7 +10,7 @@
                     </md-card-title-text>
                 </md-card-title>
                 <md-card-content>
-                    <strong><em>{{place.type}}</em></strong>
+                    <strong class="capitalize"><em>{{place.type}}</em></strong>
                     <p>{{place.address}}</p>
                 </md-card-content>
                 <md-card-actions layout="row" layout-align="end center">

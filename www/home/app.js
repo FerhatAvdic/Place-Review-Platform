@@ -33,7 +33,7 @@
             })
 
     })
-    .run(function($rootScope, $http, $location, $localStorage, jwtHelper, authService) {
+    .run(function($rootScope, $http, $location, $localStorage, jwtHelper, authService, $window) {
         // keep user logged in after page refresh
         if ($localStorage.currentUser) {
             $http.defaults.headers.common.Authorization = $localStorage.currentUser.token;
@@ -62,6 +62,12 @@
                 $location.path('/login');
             }
         });
+        $rootScope.$on('$locationChangeSuccess', function () {
+            
+            
+            
+        });
+
     });
 
 

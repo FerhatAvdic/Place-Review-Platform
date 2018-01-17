@@ -8,6 +8,7 @@
         var vm = this;
         vm.items=[];
         
+        
         listItems();
 
         ////////

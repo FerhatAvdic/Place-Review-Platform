@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
 
     <link rel="stylesheet" href="./node_modules/angular-material/angular-material.min.css">
     <link rel="stylesheet" href="./node_modules/angular-material-data-table/dist/md-data-table.min.css">
@@ -53,7 +55,7 @@
     <div class="background">
             <md-toolbar class="fixed-navbar" ng-controller="navController as vm">
                     <div class="md-toolbar-tools">
-                        <h2 flex md-truncate ><a  href="" ui-sref="home">Place Quality</a></h2>
+                        <h2 flex md-truncate ><a  href="" ui-sref="home" ui-sref-opts="{reload: true}">Place Quality</a></h2>
                         <md-button ui-sref="mysuggestions" ng-if="vm.user_id">
                             <a  href="">My Suggestions</a>
                         </md-button>

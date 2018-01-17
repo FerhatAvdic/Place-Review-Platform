@@ -4,7 +4,7 @@
     angular.module('app')
         .controller('placeItemController', placeItemController);
   
-    function placeItemController(dataService, $stateParams, $state, $localStorage ,jwtHelper) {
+    function placeItemController(dataService, $stateParams, $state, $localStorage ,jwtHelper, NgMap) {
         var vm = this;
         vm.place = null;
         vm.reviews = [];
@@ -14,6 +14,7 @@
             rating: null,
             body: null
         }
+        NgMap.addMap('place-item-map');
         vm.cancelReview = cancelReview;
         vm.createReview = createReview;
         if($localStorage.currentUser) {
