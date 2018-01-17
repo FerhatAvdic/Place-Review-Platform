@@ -1,7 +1,7 @@
 
-<md-content layout="row" layout-wrap layout-margin layout-align="center start">
+<md-content layout="row" layout-wrap layout-margin layout-align="center">
     
-        <md-card flex="35" flex-xs="100">
+        <md-card flex="40" flex-xs="100">
                 <form name="newPlaceForm" ng-submit="vm.createItem(newPlaceForm)">
                     <div layout="column" layout-margin>
                         <md-input-container>
@@ -13,7 +13,13 @@
                         </md-input-container>
                         <md-input-container>
                             <label>Address</label>
-                            <input ng-model="vm.newItem.address" name="address" required>
+                            <!--<input ng-model="vm.newItem.address" name="address" required>-->
+                            <input places-auto-complete size=80
+                                    placeholder=""
+                                    value=""
+                                    ng-model="vm.newItem.address" name="address" required
+                                    types="vm.gmaptypes"
+                                    on-place-changed="vm.placeChanged()" />
                             <div ng-messages="newPlaceForm.address.$error">
                                 <div ng-message="required">This is required.</div>
                             </div>
@@ -41,7 +47,12 @@
                     </md-card-actions>
                 </form>
             </md-card>
-    <md-card flex="80">
+    <md-card flex="40" flex-xs="100">
+        <ng-map zoom="15">
+                <marker position="{{vm.marker}}" title="{{vm.marker}}"></marker>
+        </ng-map>
+    </md-card>
+    <md-card flex="80" flex-xs="95">
         <md-toolbar class="md-table-toolbar">
             <div class="md-toolbar-tools">
                 <span>My Suggestions</span>

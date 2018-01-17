@@ -4,7 +4,7 @@
     angular.module('app')
         .controller('mySuggestionsController', mySuggestionsController);
   
-    function mySuggestionsController($localStorage,dataService, $state) {
+    function mySuggestionsController($localStorage,dataService, $state, NgMap) {
         if(!$localStorage.currentUser) $state.go('login');
         var vm = this;
         vm.types = ['restaurant','cafe','nightlife','outdoors','art','hotel','shopping','relaxation','sport', 'other'];
@@ -13,6 +13,17 @@
             address: null,
             type: null
         };
+        NgMap.getMap().then(function(map) {
+            vm.map = map;
+        });
+        vm.marker=null;
+        vm.gmaptypes=['address'];
+        vm.placeChanged = function() {
+            vm.place = this.getPlace();
+            //console.log('location', vm.place.geometry.location);
+            vm.map.setCenter(vm.place.geometry.location);
+            vm.marker = vm.newItem.address;
+        }
         vm.createItem = createItem;
         vm.cancelItem = cancelItem;
         vm.deleteItem = deleteItem;

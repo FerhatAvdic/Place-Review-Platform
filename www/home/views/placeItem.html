@@ -3,6 +3,9 @@
     <md-content layout="column" >
         <div layout="row" layout-wrap layout-align="start">
             <md-card flex="50" flex-xs="100">
+                <ng-map zoom="11" center="{{vm.place.address}}">
+                    <marker position="{{vm.place.address}}" title="{{vm.place.address}}"></marker>
+                </ng-map>
                 <md-card-title>
                     <md-card-title-text>
                     <span class="md-headline">{{vm.place.name}}</span>
