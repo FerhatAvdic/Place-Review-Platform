@@ -1,10 +1,10 @@
 
 
 <div flex-gt-md="80" flex-offset-gt-md="10">
-    <md-content layout="row" layout-padding layout-wrap layout-align="center">
-            <md-card flex="95">
+    <md-content layout="row" layout-padding layout-wrap layout-align="center start">
+            <md-card class="place-card">
                 <div layout="row" layout-padding layout-wrap layout-align="center">
-                    <md-input-container flex="25" flex-xs="100">
+                    <md-input-container flex="100">
                         <label>Type</label>
                         <md-select ng-model="vm.filter.type" name="type">
                             <md-option ng-value=""><em>All</em></md-option>
@@ -13,11 +13,11 @@
                             </md-option>
                         </md-select>
                     </md-input-container>
-                    <md-input-container flex="25" flex-xs="100">
+                    <md-input-container flex="100">
                         <label>Name</label>
                         <input ng-model="vm.filter.name" name="filter">
                     </md-input-container>
-                    <md-input-container flex="50" flex-xs="100">
+                    <md-input-container flex="100">
                         <label>Address</label>
                         <input ng-model="vm.filter.address" name="filter">
                     </md-input-container>
