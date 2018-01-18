@@ -1,46 +1,51 @@
-<md-content>
-    <md-card>
-        <md-toolbar class="md-table-toolbar">
-            <div class="md-toolbar-tools">
-                <span>Suggestions</span>
-            </div>
-        </md-toolbar>
-        <!-- exact table from live demo -->
-        <md-table-container>
-            <table md-table>
-                <thead md-head>
-                <tr md-row>
-                    <th md-column><div ng-click="vm.sortBy('user.username')" class="table-header">Username</div>
-                    <input type="text"ng-model="vm.filter.user.username" class="table-filter"></th>
-                    <th md-column><div ng-click="vm.sortBy('user.email')" class="table-header">Email</div>
-                    <input type="text"ng-model="vm.filter.user.email" class="table-filter"></th>
-                    <th md-column><div ng-click="vm.sortBy('place.name')" class="table-header">Place</div>
-                    <input type="text" ng-model="vm.filter.place.name" class="table-filter"></th>
-                    <th md-column ><div ng-click="vm.sortBy('place.type')" class="table-header">Type</div>
-                    <input type="text" ng-model="vm.filter.place.type" class="table-filter"></th>
-                    <th md-column><div ng-click="vm.sortBy('place.address')" class="table-header">Address</div>
-                    <input type="text"ng-model="vm.filter.place.address" class="table-filter"></th>
-                    <th md-column ></th>
-                </tr>
-                </thead>
-                <tbody md-body>
-                <tr md-row ng-repeat="s in vm.items | orderBy:vm.propertyName:vm.reverse | filter:vm.filter">
-                    <td md-cell >{{s.user.username}}</td>
-                    <td md-cell >{{s.user.email}}</td>
-                    <td md-cell >{{s.place.name}}</td>
-                    <td md-cell >{{s.place.type}}</td>
-                    <td md-cell >{{s.place.address}}</td>
-                    <td md-cell layout="row">
-                        <md-button flex-gt-xs="25" class="md-icon-button" aria-label="Update" ng-click="vm.updateItem(s._id)">
-                            <md-icon md-font-icon="fa-check" class="fa fa-ng"></md-icon>
-                        </md-button>
-                        <md-button flex-gt-xs="25" class="md-icon-button" aria-label="Delete" ng-click="vm.deleteItem(s._id)">
-                            <md-icon md-font-icon="fa-times" class="fa fa-ng"></md-icon>
-                        </md-button>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </md-table-container>
-    </md-card>
+<md-content layout-margin>
+    <div layout="row" layout-align="center">
+        <div flex="90" flex-xs="100">
+                <md-card>
+                        <md-toolbar class="md-table-toolbar">
+                            <div class="md-toolbar-tools">
+                                <span>Suggestions</span>
+                            </div>
+                        </md-toolbar>
+                        <!-- exact table from live demo -->
+                        <md-table-container>
+                            <table md-table>
+                                <thead md-head>
+                                <tr md-row>
+                                    <th md-column><div ng-click="vm.sortBy('user.username')" class="table-header">Username</div>
+                                    <input type="text"ng-model="vm.filter.user.username" class="table-filter"></th>
+                                    <th md-column><div ng-click="vm.sortBy('user.email')" class="table-header">Email</div>
+                                    <input type="text"ng-model="vm.filter.user.email" class="table-filter"></th>
+                                    <th md-column><div ng-click="vm.sortBy('place.name')" class="table-header">Place</div>
+                                    <input type="text" ng-model="vm.filter.place.name" class="table-filter"></th>
+                                    <th md-column ><div ng-click="vm.sortBy('place.type')" class="table-header">Type</div>
+                                    <input type="text" ng-model="vm.filter.place.type" class="table-filter"></th>
+                                    <th md-column><div ng-click="vm.sortBy('place.address')" class="table-header">Address</div>
+                                    <input type="text"ng-model="vm.filter.place.address" class="table-filter"></th>
+                                    <th md-column ></th>
+                                </tr>
+                                </thead>
+                                <tbody md-body>
+                                <tr md-row ng-repeat="s in vm.items | orderBy:vm.propertyName:vm.reverse | filter:vm.filter">
+                                    <td md-cell >{{s.user.username}}</td>
+                                    <td md-cell >{{s.user.email}}</td>
+                                    <td md-cell >{{s.place.name}}</td>
+                                    <td md-cell >{{s.place.type}}</td>
+                                    <td md-cell >{{s.place.address}}</td>
+                                    <td md-cell layout="row">
+                                        <md-button flex-gt-xs="25" class="md-icon-button" aria-label="Update" ng-click="vm.updateItem(s._id)">
+                                            <md-icon md-font-icon="fa-check" class="fa fa-ng"></md-icon>
+                                        </md-button>
+                                        <md-button flex-gt-xs="25" class="md-icon-button" aria-label="Delete" ng-click="vm.deleteItem(s._id)">
+                                            <md-icon md-font-icon="fa-times" class="fa fa-ng"></md-icon>
+                                        </md-button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </md-table-container>
+                    </md-card>
+        </div>
+    </div>
+    
 </md-content>

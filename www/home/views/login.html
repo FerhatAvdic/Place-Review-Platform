@@ -1,7 +1,7 @@
-<div class="full-height">
-    <div class="flex-center-center">
-        <md-card id="loginCard">
-            <form name="loginForm" ng-submit="vm.login(loginForm)">
+<div class="full-height" layout="row" layout-padding layout-align="center center">
+    <div flex-xs="100" flex-sm="50" flex-md="40" flex-gt-md="30">
+        <form name="loginForm" ng-submit="vm.login(loginForm)">
+            <md-card class="authCard">
                 <md-card-title>
                     <md-card-title-text layout="row" layout-align="center center">
                     <span class="md-headline">Log In</span>
@@ -28,7 +28,7 @@
                 <md-card-actions layout="row" layout-align="center center">
                     <md-button class="md-raised md-primary" ng-disabled="loginForm.$invalid" type="submit">Submit</md-button>
                 </md-card-actions>
-            </form>
-        </md-card>
+            </md-card>
+        </form>
     </div>
 </div>

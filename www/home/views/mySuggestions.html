@@ -1,91 +1,98 @@
-
-<md-content layout="row" layout-wrap layout-margin layout-align="center">
-    
-        <md-card flex="40" flex-xs="100">
+<md-content layout-margin>
+    <div layout="row" layout-wrap layout-align="center">
+            <div flex="40" flex-xs="100">
                 <form name="newPlaceForm" ng-submit="vm.createItem(newPlaceForm)">
-                    <div layout="column" layout-margin>
-                        <md-input-container>
-                            <label>Name</label>
-                            <input ng-model="vm.newItem.name" name="name" required>
-                            <div ng-messages="newPlaceForm.name.$error">
-                                <div ng-message="required">This is required.</div>
-                            </div>
-                        </md-input-container>
-                        <md-input-container>
-                            <label>Address</label>
-                            <!--<input ng-model="vm.newItem.address" name="address" required>-->
-                            <input places-auto-complete size=80
-                                    placeholder=""
-                                    value=""
-                                    ng-model="vm.newItem.address" name="address" required
-                                    on-place-changed="vm.placeChanged()" />
-                            <div ng-messages="newPlaceForm.address.$error">
-                                <div ng-message="required">This is required.</div>
-                            </div>
-                        </md-input-container>
-                        <md-input-container>
-                            <label>Type</label>
-                            <md-select ng-model="vm.newItem.type" name="type" required>
-                                <md-option disabled><em>None</em></md-option>
-                                <md-option ng-repeat="type in vm.types" ng-value="type">
-                                {{type}}
-                                </md-option>
-                            </md-select>
-                            <div ng-messages="newPlaceForm.type.$error">
-                                <div ng-message="required">This is required.</div>
-                            </div>
-                        </md-input-container>
+                    <md-card >
+                        <div layout="column" layout-margin>
+                            <md-input-container>
+                                <label>Name</label>
+                                <input ng-model="vm.newItem.name" name="name" required>
+                                <div ng-messages="newPlaceForm.name.$error">
+                                    <div ng-message="required">This is required.</div>
+                                </div>
+                            </md-input-container>
+                            <md-input-container>
+                                <label>Address</label>
+                                <!--<input ng-model="vm.newItem.address" name="address" required>-->
+                                <input places-auto-complete size=80
+                                        placeholder=""
+                                        value=""
+                                        ng-model="vm.newItem.address" name="address" required
+                                        on-place-changed="vm.placeChanged()" />
+                                <div ng-messages="newPlaceForm.address.$error">
+                                    <div ng-message="required">This is required.</div>
+                                </div>
+                            </md-input-container>
+                            <md-input-container>
+                                <label>Type</label>
+                                <md-select ng-model="vm.newItem.type" name="type" required>
+                                    <md-option disabled><em>None</em></md-option>
+                                    <md-option ng-repeat="type in vm.types" ng-value="type">
+                                    {{type}}
+                                    </md-option>
+                                </md-select>
+                                <div ng-messages="newPlaceForm.type.$error">
+                                    <div ng-message="required">This is required.</div>
+                                </div>
+                            </md-input-container>
+                        </div>
+                        <md-card-actions layout="row" layout-align="end center">
+                                <md-button ng-click="vm.cancelItem(newPlaceForm)">
+                                        Cancel
+                                    </md-button>
+                                    <md-button class="md-raised md-primary" type="submit" ng-disabled="newPlaceForm.$invalid" >
+                                        Submit
+                                    </md-button>
+                        </md-card-actions>
+                </md-card>
+            </form>
+        </div>
+        <div flex="40" flex-xs="100">
+            <md-card>
+                <ng-map ng-if="vm.marker" id="suggestion-map" zoom="16" center="{{vm.marker}}">
+                        <marker position="{{vm.marker}}" title="{{vm.marker}}"></marker>
+                </ng-map>
+            </md-card>    
+        </div>
+        <div flex="80" flex-xs="100">
+            <md-card>
+                <md-toolbar class="md-table-toolbar">
+                    <div class="md-toolbar-tools">
+                        <span>My Suggestions</span>
                     </div>
-                    <md-card-actions layout="row" layout-align="end center">
-                            <md-button ng-click="vm.cancelItem(newPlaceForm)">
-                                    Cancel
+                </md-toolbar>
+                <!-- exact table from live demo -->
+                <md-table-container>
+                    <table md-table>
+                        <thead md-head>
+                        <tr md-row>
+                            <th md-column><div ng-click="vm.sortBy('place.name')" class="table-header">Name</div>
+                            <input type="text" ng-model="vm.filter.place.name" class="table-filter"></th>
+                            <th md-column ><div ng-click="vm.sortBy('place.type')" class="table-header">Type</div>
+                            <input type="text" ng-model="vm.filter.place.type" class="table-filter"></th>
+                            <th md-column><div ng-click="vm.sortBy('place.address')" class="table-header">Address</div>
+                            <input type="text"ng-model="vm.filter.place.address" class="table-filter"></th>
+                            <th md-column ></th>
+                        </tr>
+                        </thead>
+                        <tbody md-body>
+                        <tr md-row ng-repeat="s in vm.mySuggestions | orderBy:vm.propertyName:vm.reverse | filter:vm.filter">
+                            <td md-cell >{{s.place.name}}</td>
+                            <td md-cell >{{s.place.type}}</td>
+                            <td md-cell >{{s.place.address}}</td>
+                            <td md-cell>
+                                <md-button class="md-icon-button" aria-label="Delete" ng-click="vm.deleteItem(s._id)">
+                                    <md-icon md-font-icon="fa-times" class="fa fa-ng"></md-icon>
                                 </md-button>
-                                <md-button class="md-raised md-primary" type="submit" ng-disabled="newPlaceForm.$invalid" >
-                                    Submit
-                                </md-button>
-                    </md-card-actions>
-                </form>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </md-table-container>
             </md-card>
-    <md-card flex="40" flex-xs="100">
-        <ng-map ng-if="vm.marker" id="suggestion-map" zoom="16" center="{{vm.marker}}">
-                <marker position="{{vm.marker}}" title="{{vm.marker}}"></marker>
-        </ng-map>
-    </md-card>
-    <md-card flex="80" flex-xs="95">
-        <md-toolbar class="md-table-toolbar">
-            <div class="md-toolbar-tools">
-                <span>My Suggestions</span>
-            </div>
-        </md-toolbar>
-        <!-- exact table from live demo -->
-        <md-table-container>
-            <table md-table>
-                <thead md-head>
-                <tr md-row>
-                    <th md-column><div ng-click="vm.sortBy('place.name')" class="table-header">Name</div>
-                    <input type="text" ng-model="vm.filter.place.name" class="table-filter"></th>
-                    <th md-column ><div ng-click="vm.sortBy('place.type')" class="table-header">Type</div>
-                    <input type="text" ng-model="vm.filter.place.type" class="table-filter"></th>
-                    <th md-column><div ng-click="vm.sortBy('place.address')" class="table-header">Address</div>
-                    <input type="text"ng-model="vm.filter.place.address" class="table-filter"></th>
-                    <th md-column ></th>
-                </tr>
-                </thead>
-                <tbody md-body>
-                <tr md-row ng-repeat="s in vm.mySuggestions | orderBy:vm.propertyName:vm.reverse | filter:vm.filter">
-                    <td md-cell >{{s.place.name}}</td>
-                    <td md-cell >{{s.place.type}}</td>
-                    <td md-cell >{{s.place.address}}</td>
-                    <td md-cell>
-                        <md-button class="md-icon-button" aria-label="Delete" ng-click="vm.deleteItem(s._id)">
-                            <md-icon md-font-icon="fa-times" class="fa fa-ng"></md-icon>
-                        </md-button>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </md-table-container>
-    </md-card>
+        </div>
+    </div>
+    
 </md-content>
 
             

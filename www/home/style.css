@@ -2,7 +2,7 @@ div{
     box-sizing: border-box;
 }
 .full-height{
-    height: calc(100vh - 64px);
+    min-height: calc(100vh - 56px);
 }
 .background{
     background-image: url('./home-bg.jpg');
@@ -25,20 +25,12 @@ div{
     height: 100%;
 }
 
-#loginCard{
-    width: 400px;
-    max-width: 100%;
+.authCard{
+    max-width: 400px;
+    margin: 0 auto;
     padding: 15px;
-    margin: 15px;
 }
 
-@media only screen and (max-width: 450px){
-    #loginCard{
-        width: 100%;
-        padding: 15px;
-        margin: 15px;
-    }
-}
 
 .fixed-navbar{
     position:fixed;
@@ -46,13 +38,16 @@ div{
 }
 .navbar-padding{
     height: 100%;
-    padding-top: 64px;
+    padding-top: 56px;
+}
+
+.stretch{
+    width:100%;
+    height:100%;
 }
 
 .place-card{
-    width: 300px;
-    max-width: 100%;
-    height:300px;
+    height:305px;
 }
 .capitalize {
     text-transform: capitalize;

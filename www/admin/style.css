@@ -1,12 +1,18 @@
 .div{
     box-sizing: border-box;
 }
+
 .background{
     background-image: url('./admin-bg.jpg');
     background-attachment: fixed;
     background-size:cover;
     min-height:100%;
 }
+
+.md-button.md-fab.md-fab-bottom-right {
+    position: fixed;
+}
+
 .full-height{
     height:100%;
 }
@@ -17,19 +23,10 @@
     font-size:18px;
 }
 
-.flex-center-center{
-    display:flex;
-    flex-direction: column;
-    justify-content:center;
-    align-items: center;
-    height: 100%;
-}
-
 #loginCard{
-    width: 400px;
-    max-width: 100%;
+    max-width: 400px;
     padding: 15px;
-    margin: 15px;
+    margin: 0 auto;
 }
 .table-filter{
     margin-bottom: 10px;

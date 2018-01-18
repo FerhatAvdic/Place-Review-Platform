@@ -1,103 +1,106 @@
-
-<div flex-gt-md="80" flex-offset-gt-md="10" >
-    <md-content layout="column" >
-        <div layout="row" layout-wrap layout-align="start">
-            <md-card flex="50" flex-xs="100">
-                <ng-map ng-if="vm.place.address" id="place-item-map" zoom="16" center="{{vm.place.address}}">
-                    <marker position="{{vm.place.address}}" title="{{vm.place.address}}"></marker>
-                </ng-map>
-                <md-card-title>
-                    <md-card-title-text>
-                    <span class="md-headline">{{vm.place.name}}</span>
-                    </md-card-title-text>
-                </md-card-title>
-                <md-card-content>
-                    <p>{{vm.place.type}}</p>
-                    <p>{{vm.place.address}}</p>
-                </md-card-content>
-            </md-card>
-            <md-card flex="45" flex-xs="100" ng-if="vm.user_id">
-                <div layout-padding>
+<md-content layout-margin>
+        <div layout="row" layout-wrap layout-align="center">
+            <div flex="40" flex-xs="100" >
+                <md-card>
+                    <ng-map ng-if="vm.place.address" id="place-item-map" zoom="16" center="{{vm.place.address}}">
+                        <marker position="{{vm.place.address}}" title="{{vm.place.address}}"></marker>
+                    </ng-map>
+                    <md-card-title>
+                        <md-card-title-text>
+                        <span class="md-headline">{{vm.place.name}}</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-content>
+                        <p>{{vm.place.type}}</p>
+                        <p>{{vm.place.address}}</p>
+                    </md-card-content>
+                </md-card>
+            </div> 
+            <div flex="40" flex-xs="100" >
+                <md-card ng-if="vm.user_id">
+                    <div layout-padding>
                         <form name="newReviewForm" ng-submit="vm.createReview(newReviewForm)" novalidate >
-                                <md-input-container>
-                                    <label>Rating</label>
-                                    <input ng-model="vm.newReview.rating" name="rating" type="number" min="1" max="5" required>
-                                    <div ng-messages="newReviewForm.rating.$error">
-                                        <div ng-message="required">This is required.</div>
-                                        <div ng-message="max">Maximum value is 5.</div>
-                                        <div ng-message="min">Minimum value is 1.</div>
-                                    </div>
-                                </md-input-container>
-                                <md-input-container class="md-block">
-                                    <label>Review</label>
-                                    <textarea ng-model="vm.newReview.body" name="body" rows="5" md-select-on-focus required></textarea>
-                                    <div ng-messages="newReviewForm.body.$error">
-                                        <div ng-message="required">This is required.</div>
-                                    </div>
-                                </md-input-container>
-                                <md-card-actions layout="row" layout-align="end center">
-                                        <md-button type="button" ng-click="vm.cancelReview(newReviewForm)">Clear</md-button>
-                                        <md-button class="md-raised md-primary" type="submit" ng-disabled="newReviewForm.$invalid">Submit</md-button>
-                                </md-card-actions>
-                            </form>
+                            <md-input-container>
+                                <label>Rating</label>
+                                <input ng-model="vm.newReview.rating" name="rating" type="number" min="1" max="5" required>
+                                <div ng-messages="newReviewForm.rating.$error">
+                                    <div ng-message="required">This is required.</div>
+                                    <div ng-message="max">Maximum value is 5.</div>
+                                    <div ng-message="min">Minimum value is 1.</div>
+                                </div>
+                            </md-input-container>
+                            <md-input-container class="md-block">
+                                <label>Review</label>
+                                <textarea ng-model="vm.newReview.body" name="body" rows="5" md-select-on-focus required></textarea>
+                                <div ng-messages="newReviewForm.body.$error">
+                                    <div ng-message="required">This is required.</div>
+                                </div>
+                            </md-input-container>
+                            <md-card-actions layout="row" layout-align="end center">
+                                    <md-button type="button" ng-click="vm.cancelReview(newReviewForm)">Clear</md-button>
+                                    <md-button class="md-raised md-primary" type="submit" ng-disabled="newReviewForm.$invalid">Submit</md-button>
+                            </md-card-actions>
+                        </form>
+                    </div>
+                </md-card>
+            </div>
+        <div flex="80" flex-xs="100">
+            <md-card >
+                <md-toolbar>
+                    <div class="md-toolbar-tools">
+                        <h3 class="md-headline" >Reviews</h3>
+                    </div>
+                </md-toolbar>
+                <div layout="column" layout-margin>
+                    <md-card ng-repeat="review in vm.reviews">
+                        <md-card-title>
+                            <md-card-title-text>
+                            <span class="md-headline">{{review.user.username}}</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                        <md-card-content>
+                            <div ng-if="review.rating === 5">
+                                <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
+                                <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
+                                <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
+                                <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
+                                <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
+                            </div>
+                            <div ng-if="review.rating === 4">
+                                    <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
+                                    <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
+                                    <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
+                                    <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
+                                    <md-icon md-font-icon="fa-star" class="far fa-ng"></md-icon>
+                            </div>
+                                
+                            <div ng-if="review.rating === 3">
+                                <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
+                                <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
+                                <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
+                                <md-icon md-font-icon="fa-star" class="far fa-ng"></md-icon>
+                                <md-icon md-font-icon="fa-star" class="far fa-ng"></md-icon>
+                            </div>
+                            <div ng-if="review.rating === 2">
+                                    <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
+                                    <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
+                                    <md-icon md-font-icon="fa-star" class="far fa-ng"></md-icon>
+                                    <md-icon md-font-icon="fa-star" class="far fa-ng"></md-icon>
+                                    <md-icon md-font-icon="fa-star" class="far fa-ng"></md-icon>
+                            </div>
+                            <div ng-if="review.rating === 1">
+                                    <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
+                                    <md-icon md-font-icon="fa-star" class="far fa-ng"></md-icon>
+                                    <md-icon md-font-icon="fa-star" class="far fa-ng"></md-icon>
+                                    <md-icon md-font-icon="fa-star" class="far fa-ng"></md-icon>
+                                    <md-icon md-font-icon="fa-star" class="far fa-ng"></md-icon>
+                            </div>
+                                
+                            <p>{{review.body}}</p>
+                        </md-card-content>
+                    </md-card>
                 </div>
             </md-card>
         </div>
-        <md-card flex="90">
-            <md-toolbar>
-                <div class="md-toolbar-tools">
-                    <h3 class="md-headline" >Reviews</h3>
-                </div>
-            </md-toolbar>
-            <div layout="column" layout-margin>
-                    <md-card ng-repeat="review in vm.reviews">
-                            <md-card-title>
-                                <md-card-title-text>
-                                <span class="md-headline">{{review.user.username}}</span>
-                                </md-card-title-text>
-                            </md-card-title>
-                            <md-card-content>
-                                <div ng-if="review.rating === 5">
-                                    <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
-                                    <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
-                                    <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
-                                    <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
-                                    <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
-                                </div>
-                                <div ng-if="review.rating === 4">
-                                        <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
-                                        <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
-                                        <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
-                                        <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
-                                        <md-icon md-font-icon="fa-star" class="far fa-ng"></md-icon>
-                                </div>
-                                    
-                                <div ng-if="review.rating === 3">
-                                    <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
-                                    <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
-                                    <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
-                                    <md-icon md-font-icon="fa-star" class="far fa-ng"></md-icon>
-                                    <md-icon md-font-icon="fa-star" class="far fa-ng"></md-icon>
-                                </div>
-                                <div ng-if="review.rating === 2">
-                                        <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
-                                        <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
-                                        <md-icon md-font-icon="fa-star" class="far fa-ng"></md-icon>
-                                        <md-icon md-font-icon="fa-star" class="far fa-ng"></md-icon>
-                                        <md-icon md-font-icon="fa-star" class="far fa-ng"></md-icon>
-                                </div>
-                                <div ng-if="review.rating === 1">
-                                        <md-icon md-font-icon="fa-star" class="fa fa-ng"></md-icon>
-                                        <md-icon md-font-icon="fa-star" class="far fa-ng"></md-icon>
-                                        <md-icon md-font-icon="fa-star" class="far fa-ng"></md-icon>
-                                        <md-icon md-font-icon="fa-star" class="far fa-ng"></md-icon>
-                                        <md-icon md-font-icon="fa-star" class="far fa-ng"></md-icon>
-                                </div>
-                                    
-                                <p>{{review.body}}</p>
-                            </md-card-content>
-                        </md-card>
-            </div>
-        </md-card>
-    </md-content>
-</div>
+    </div>
+</md-content>

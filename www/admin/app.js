@@ -41,7 +41,8 @@
                 var tokenPayload = jwtHelper.decodeToken($localStorage.currentUser.token);
                 var tokenExpired = jwtHelper.isTokenExpired($localStorage.currentUser.token);
                 //console.log("token",$localStorage.currentUser.token,"tokenExpiration", tokenExpired);
-                if ((restrictedPage && tokenExpired) || !tokenPayload.role === 'admin') {
+                if ((restrictedPage && tokenExpired) || tokenPayload.role !== 'admin') {
+                    console.log("token payload", tokenPayload);
                     authService.Logout();
                     $location.path('/login');
                 }
