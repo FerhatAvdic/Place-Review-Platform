@@ -1,58 +1,53 @@
-
-
-
 <md-content layout-padding>
             <div layout="row" layout-align="center">
                 <div flex="80" flex-xs="100">
-                        <md-card >
-                                <div layout="row" layout-align="center" layout-margin layout-wrap>
-                                        <md-input-container flex="20" flex-xs="100">
-                                                <label>Type</label>
-                                                <md-select ng-model="vm.filter.type" name="type">
-                                                    <md-option ng-value=""><em>All</em></md-option>
-                                                    <md-option ng-repeat="type in vm.types" ng-value="type">
-                                                    {{type}}
-                                                    </md-option>
-                                                </md-select>
-                                            </md-input-container>
-                                            <md-input-container flex="20" flex-xs="100">
-                                                <label>Name</label>
-                                                <input ng-model="vm.filter.name" name="filter">
-                                            </md-input-container>
-                                            <md-input-container flex="50" flex-xs="100">
-                                                <label>Address</label>
-                                                <input ng-model="vm.filter.address" name="filter">
-                                            </md-input-container>
-                                </div>
-                        </md-card>
-                </div>
-                            
+                    <md-card >
+                        <div layout="row" layout-align="center" layout-margin layout-wrap>
+                            <md-input-container flex="20" flex-xs="100">
+                                <label>Type</label>
+                                <md-select ng-model="vm.filter.type" name="type">
+                                    <md-option ng-value=""><em>All</em></md-option>
+                                    <md-option ng-repeat="type in vm.types" ng-value="type">
+                                    {{type}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                            <md-input-container flex="20" flex-xs="100">
+                                <label>Name</label>
+                                <input ng-model="vm.filter.name" name="filter">
+                            </md-input-container>
+                            <md-input-container flex="50" flex-xs="100">
+                                <label>Address</label>
+                                <input ng-model="vm.filter.address" name="filter">
+                            </md-input-container>
+                        </div>
+                    </md-card>
+                </div>  
             </div>
             <div layout="row" layout-align="center">
-                    <div flex="80" flex-xs="100">
-                        <div layout="row" layout-align="space-between" layout-wrap>
-                                <div flex-md="33" flex-xs="100" flex-sm="50" flex="25" ng-repeat="place in vm.items | filter:vm.filter track by $index">
-                                        <md-card  class="place-card">
-                                                <ng-map ng-if="false" id="{{place._id}}" zoom="16" center="{{place.address}}">
-                                                    <marker ng-if="place.address" position="{{place.address}}" title="{{place.address}}"></marker>
-                                                </ng-map>
-                                                <md-card-title>
-                                                    <md-card-title-text>
-                                                    <span class="md-headline">{{place.name}}</span>
-                                                    </md-card-title-text>
-                                                </md-card-title>
-                                                <md-card-content>
-                                                    <strong class="capitalize"><em>{{place.type}}</em></strong>
-                                                    <p>{{place.address}}</p>
-                                                </md-card-content>
-                                                <md-card-actions layout="row" layout-align="end center">
-                                                    <md-button ui-sref="places({item_id: place._id})">Reviews</md-button>
-                                                </md-card-actions>
-                                            </md-card>
-                                </div>
+                <div flex="80" flex-xs="100">
+                    <div layout="row" layout-align="space-between" layout-wrap>
+                        <div flex-md="33" flex-xs="100" flex-sm="50" flex="25" ng-repeat="place in vm.items | filter:vm.filter track by $index">
+                            <md-card  class="place-card">
+                                <ng-map id="{{place._id}}" zoom-to-include-markers='auto' class="place-map">
+                                    <!--<marker ng-if="place.address" position="{{place.address}}" title="{{place.address}}"></marker>-->
+                                </ng-map>
+                                <md-card-title>
+                                    <md-card-title-text>
+                                    <span class="md-headline">{{place.name}}</span>
+                                    </md-card-title-text>
+                                </md-card-title>
+                                <md-card-content>
+                                    <strong class="capitalize"><em>{{place.type}}</em></strong>
+                                    <p>{{place.address}}</p>
+                                </md-card-content>
+                                <md-card-actions layout="row" layout-align="end center">
+                                    <md-button ui-sref="places({item_id: place._id})">Reviews</md-button>
+                                </md-card-actions>
+                            </md-card>
                         </div>
-                            
                     </div>
+                </div>
             </div>
 </md-content>
             

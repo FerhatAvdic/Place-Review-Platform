@@ -19,6 +19,7 @@
         vm.marker=null;
         vm.gmaptypes=['address'];
         vm.placeChanged = function() {
+            console.log("this", this);
             //vm.place = this.getPlace();
             //console.log('location', vm.place.geometry.location);
             //vm.map.setCenter(vm.place.geometry.location);

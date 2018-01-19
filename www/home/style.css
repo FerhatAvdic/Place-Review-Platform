@@ -47,7 +47,11 @@ div{
 }
 
 .place-card{
-    height:305px;
+    height:400px;
+}
+
+.place-map{
+    height:200px;
 }
 .capitalize {
     text-transform: capitalize;
