@@ -16,13 +16,13 @@
                                 </div>
                             </md-input-container>
                             <md-input-container>
-                                    <label>Email</label>
-                                    <input ng-model="vm.newUser.email" type="email" name="email" required>
-                                    <div ng-messages="signupForm.email.$error">
-                                        <div ng-message="required">This is required.</div>
-                                        <div ng-message="email">Invalid Email.</div>
-                                    </div>
-                                </md-input-container>
+                                <label>Email</label>
+                                <input ng-model="vm.newUser.email" type="email" name="email" required>
+                                <div ng-messages="signupForm.email.$error">
+                                    <div ng-message="required">This is required.</div>
+                                    <div ng-message="email">Invalid Email.</div>
+                                </div>
+                            </md-input-container>
                             <md-input-container>
                                 <label>Password</label>
                                 <input ng-model="vm.newUser.password" type="password" name="password" required>

@@ -1,25 +1,26 @@
-<md-content layout-margin>
-        <div layout="row" layout-wrap layout-align="center">
-            <div flex="40" flex-xs="100" >
-                <md-card>
-                    <ng-map ng-if="vm.place.address" id="place-item-map" zoom="16" center="{{vm.place.address}}">
-                        <marker position="{{vm.place.address}}" title="{{vm.place.address}}"></marker>
-                    </ng-map>
-                    <md-card-title>
-                        <md-card-title-text>
-                        <span class="md-headline">{{vm.place.name}}</span>
-                        </md-card-title-text>
-                    </md-card-title>
-                    <md-card-content>
-                        <p>{{vm.place.type}}</p>
-                        <p>{{vm.place.address}}</p>
-                    </md-card-content>
-                </md-card>
-            </div> 
-            <div flex="40" flex-xs="100" >
+<md-content layout-padding>
+    <div layout="row" layout-wrap layout-align="center">
+        <div flex="50" flex-sm="75" flex-xs="100">
+            <md-card>
+                <ng-map ng-if="vm.place.address" id="place-item-map"  zoom="16" center="{{vm.place.address}}">
+                    <marker position="{{vm.place.address}}" title="{{vm.place.address}}"></marker>
+                </ng-map>
+                <md-card-title>
+                    <md-card-title-text>
+                    <span class="md-headline">{{vm.place.name}}</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                    <p>{{vm.place.type}}</p>
+                    <p>{{vm.place.address}}</p>
+                </md-card-content>
+            </md-card>
+        </div> 
+    </div>
+            <!--<div flex="40" flex-xs="100">
                 <md-card ng-if="vm.user_id">
                     <div layout-padding>
-                        <form name="newReviewForm" ng-submit="vm.createReview(newReviewForm)" novalidate >
+                        <form name="newReviewForm" ng-submit="vm.createReview(newReviewForm)" novalidate>
                             <md-input-container>
                                 <label>Rating</label>
                                 <input ng-model="vm.newReview.rating" name="rating" type="number" min="1" max="5" required>
@@ -37,14 +38,15 @@
                                 </div>
                             </md-input-container>
                             <md-card-actions layout="row" layout-align="end center">
-                                    <md-button type="button" ng-click="vm.cancelReview(newReviewForm)">Clear</md-button>
-                                    <md-button class="md-raised md-primary" type="submit" ng-disabled="newReviewForm.$invalid">Submit</md-button>
+                                <md-button type="button" ng-click="vm.cancelReview(newReviewForm)">Clear</md-button>
+                                <md-button class="md-raised md-primary" type="submit" ng-disabled="newReviewForm.$invalid">Submit</md-button>
                             </md-card-actions>
                         </form>
                     </div>
                 </md-card>
-            </div>
-        <div flex="80" flex-xs="100">
+            </div>-->
+    <div layout="row" layout-wrap layout-align="center">
+        <div flex="50" flex-sm="75" flex-xs="100">
             <md-card >
                 <md-toolbar>
                     <div class="md-toolbar-tools">
@@ -54,8 +56,15 @@
                 <div layout="column" layout-margin>
                     <md-card ng-repeat="review in vm.reviews">
                         <md-card-title>
-                            <md-card-title-text>
-                            <span class="md-headline">{{review.user.username}}</span>
+                            <md-card-title-text layout="row">
+                            <span class="md-headline ">{{review.user.username}}</span>
+                            <span flex></span>
+                            <md-button class="md-icon-button fa-ng-size" ng-click="vm.showUpdateDialog($event, review)" ng-if="vm.user_id === review.user.id || vm.role==='admin'">
+                                <md-icon md-font-icon="fa-edit" class="fa fa-ng"></md-icon>
+                            </md-button>
+                            <md-button class="md-icon-button fa-ng-size" ng-click="vm.showDeleteDialog($event, review._id)" ng-if="vm.user_id === review.user.id || vm.role==='admin'">
+                                <md-icon md-font-icon="fa-times" class="fa fa-ng"></md-icon>
+                            </md-button>
                             </md-card-title-text>
                         </md-card-title>
                         <md-card-content>
@@ -104,3 +113,6 @@
         </div>
     </div>
 </md-content>
+<md-button class="md-fab md-fab-bottom-right md-primary" aria-label="Add_Review" ng-click="vm.showCreateDialog($event)">
+    <md-icon md-font-icon="fa-plus" class="fa fa-ng"></md-icon>
+</md-button>

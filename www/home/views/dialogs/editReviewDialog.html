@@ -1,0 +1,41 @@
+<md-dialog aria-label="Add_Review" flex="35" flex-sm="75" flex-xs="75">
+    <form name="editReviewForm" ng-submit="vm.updateReview(editReviewForm)">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>New Review</h2>
+                <span flex></span>
+                <md-button class="md-icon-button fa-ng-size" ng-click="vm.cancelDialog(editReviewForm)">
+                    <md-icon md-font-icon="fa-times" class="fa fa-ng" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content" layout="column">
+                <md-input-container>
+                    <label>Rating</label>
+                    <input ng-model="vm.editingReview.rating" name="rating" type="number" min="1" max="5" required>
+                    <div ng-messages="editReviewForm.rating.$error">
+                        <div ng-message="required">This is required.</div>
+                        <div ng-message="max">Maximum value is 5.</div>
+                        <div ng-message="min">Minimum value is 1.</div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Review</label>
+                    <textarea ng-model="vm.editingReview.body" name="body" rows="5" md-select-on-focus required></textarea>
+                    <div ng-messages="editReviewForm.body.$error">
+                        <div ng-message="required">This is required.</div>
+                    </div>
+                </md-input-container>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions layout="row">
+            <md-button ng-click="vm.cancelDialog(editReviewForm)">
+                Cancel
+            </md-button>
+            <md-button type="submit" class="md-primary" ng-disabled="editReviewForm.$invalid">
+                Submit
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

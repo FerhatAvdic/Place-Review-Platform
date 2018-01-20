@@ -4,7 +4,7 @@
     angular.module('app')
         .controller('mySuggestionsController', mySuggestionsController);
   
-    function mySuggestionsController($localStorage,dataService, $state, NgMap, $window) {
+    function mySuggestionsController($localStorage,dataService, $state, NgMap, $window, $mdDialog) {
         if(!$localStorage.currentUser) $state.go('login');
         var vm = this;
         vm.types = ['restaurant','cafe','nightlife','outdoors','art','hotel','shopping','relaxation','sport', 'other'];
@@ -27,7 +27,9 @@
         }
         vm.createItem = createItem;
         vm.cancelItem = cancelItem;
-        vm.deleteItem = deleteItem;
+        vm.showCreateDialog = showCreateDialog;
+        vm.cancelDialog = cancelDialog;
+        vm.showDeleteDialog = showDeleteDialog;
 
         vm.propertyName = 'place.name';
         vm.reverse = true;
@@ -68,11 +70,11 @@
             console.log("new sugg", s);
             dataService.create("suggestions", s, function(res) {
                 if (res.status === 200) {
-                    cancelItem(form);
+                    cancelDialog(form);
                     listItems();
                 }
                 else {
-                    cancelItem(form);
+                    cancelDialog(form);
                     console.log('Error: ' + res.data);
                 }
             });
@@ -96,8 +98,39 @@
                 address: null,
                 type: null
             };
+            vm.marker = null;
             form.$setPristine();
             form.$setUntouched();
+        };
+
+        function showCreateDialog(ev) {
+            $mdDialog.show({
+                controller: () => vm,
+                controllerAs: 'vm',
+                templateUrl: './www/home/views/dialogs/newSuggestionDialog.html',
+                targetEvent: ev,
+                clickOutsideToClose: true
+            });
+        };
+        function cancelDialog(form) {
+            cancelItem(form);
+            $mdDialog.cancel();
+        };
+
+        function showDeleteDialog(ev, id) {
+            var confirm = $mdDialog.confirm()
+                .title('Are you sure you want to delete this item?')
+                .textContent('This can not be undone.')
+                .targetEvent(ev)
+                .ok('Confirm')
+                .cancel('Cancel');
+
+            $mdDialog.show(confirm).then(function () {
+                //confirm
+                deleteItem(id)
+            }, function () {
+                //cancel
+            });
         };
     }
   })();
