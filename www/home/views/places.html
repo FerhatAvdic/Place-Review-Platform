@@ -14,11 +14,11 @@
                             </md-input-container>
                             <md-input-container flex="20" flex-xs="100">
                                 <label>Name</label>
-                                <input ng-model="vm.filter.name" name="filter">
+                                <input ng-model="vm.filter.name" name="filter" ng-change="vm.reloadMaps()">
                             </md-input-container>
                             <md-input-container flex="50" flex-xs="100">
                                 <label>Address</label>
-                                <input ng-model="vm.filter.address" name="filter">
+                                <input ng-model="vm.filter.address" name="filter" ng-change="vm.reloadMaps()">
                             </md-input-container>
                         </div>
                     </md-card>
