@@ -66,7 +66,7 @@
         }
 
         function reloadMaps(){
-            console.log("reloading maps");
+            //console.log("reloading maps");
             vm.items.forEach(createMaps);
         }
         
