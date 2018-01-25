@@ -9,8 +9,8 @@
         vm.items=[];
         vm.types = ['restaurant','cafe','nightlife','outdoors','art','hotel','shopping','relaxation','sport', 'other'];
         var geocoder = new google.maps.Geocoder();
-        vm.reloadMaps = reloadMaps;
-        
+        vm.prepFilter = {};
+        vm.applyFilters = applyFilters;
         
         listItems();
 
@@ -70,6 +70,10 @@
             vm.items.forEach(createMaps);
         }
         
+        function applyFilters(){
+            vm.filter = angular.copy(vm.prepFilter);
+            reloadMaps();
+        }
 
     
     }

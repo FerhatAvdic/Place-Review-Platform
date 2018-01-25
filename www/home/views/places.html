@@ -2,10 +2,10 @@
             <div layout="row" layout-align="center">
                 <div flex="80" flex-xs="100">
                     <md-card >
-                        <div layout="row" layout-align="center" layout-margin layout-wrap>
+                        <div layout="row" layout-align="center start" layout-margin layout-wrap class="padding-top-2x">
                             <md-input-container flex="20" flex-xs="100">
                                 <label>Type</label>
-                                <md-select ng-model="vm.filter.type" name="type" ng-change="vm.reloadMaps()">
+                                <md-select ng-model="vm.prepFilter.type" name="type">
                                     <md-option ng-value=""><em>All</em></md-option>
                                     <md-option ng-repeat="type in vm.types" ng-value="type">
                                     {{type}}
@@ -14,12 +14,13 @@
                             </md-input-container>
                             <md-input-container flex="20" flex-xs="100">
                                 <label>Name</label>
-                                <input ng-model="vm.filter.name" name="filter" ng-change="vm.reloadMaps()">
+                                <input ng-model="vm.prepFilter.name" name="name">
                             </md-input-container>
-                            <md-input-container flex="50" flex-xs="100">
+                            <md-input-container flex="40" flex-xs="100">
                                 <label>Address</label>
-                                <input ng-model="vm.filter.address" name="filter" ng-change="vm.reloadMaps()">
+                                <input ng-model="vm.prepFilter.address" name="address">
                             </md-input-container>
+                            <md-button flex="10" flex-xs="50" class="md-raised md-primary" ng-click="vm.applyFilters()">Submit</md-button>
                         </div>
                     </md-card>
                 </div>  
