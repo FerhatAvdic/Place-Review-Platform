@@ -9,6 +9,7 @@
         vm.items=[];
         vm.types = ['restaurant','cafe','nightlife','outdoors','art','hotel','shopping','relaxation','sport', 'other'];
         var geocoder = new google.maps.Geocoder();
+        vm.reloadMaps = reloadMaps;
         
         
         listItems();
@@ -54,8 +55,19 @@
         function setLocation(address, map){
             geocoder.geocode( { 'address' : address }, (results, status) => {
                 if( status == google.maps.GeocoderStatus.OK ) map.setCenter( results[0].geometry.location );
-                else alert( 'Geocode was not successful for the following reason: ' + status );
+                else {
+                    $timeout(function () {
+                        //console.log("repeat call");
+                        setLocation(address, map);
+                    }, 1000);
+                    //console.log( 'Geocode was not successful for the following reason: ' + status);
+                }
             });
+        }
+
+        function reloadMaps(){
+            console.log("reloading maps");
+            vm.items.forEach(createMaps);
         }
         
 

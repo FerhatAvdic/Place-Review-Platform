@@ -5,7 +5,7 @@
                         <div layout="row" layout-align="center" layout-margin layout-wrap>
                             <md-input-container flex="20" flex-xs="100">
                                 <label>Type</label>
-                                <md-select ng-model="vm.filter.type" name="type">
+                                <md-select ng-model="vm.filter.type" name="type" ng-change="vm.reloadMaps()">
                                     <md-option ng-value=""><em>All</em></md-option>
                                     <md-option ng-repeat="type in vm.types" ng-value="type">
                                     {{type}}
@@ -26,7 +26,7 @@
             </div>
             <div layout="row" layout-align="center">
                 <div flex="80" flex-xs="100">
-                    <div layout="row" layout-align="space-between" layout-wrap>
+                    <div layout="row" layout-align="start start" layout-wrap>
                         <div flex-md="33" flex-xs="100" flex-sm="50" flex="25" ng-repeat="place in vm.items | filter:vm.filter track by $index">
                             <md-card  class="place-card">
                                 <ng-map id="{{place._id}}" zoom-to-include-markers='auto' class="place-map">

@@ -12,7 +12,7 @@ router.route('/places')
             res.json(places);
         });
     })
-    .post(function(req, res) { // CREATE NOT APPROVED
+    .post(passport.authenticate('adminJWT', { session: false }), function(req, res) {
       var newPlace = new Place({
         name: req.body.name,
         type: req.body.type,
@@ -32,7 +32,7 @@ router.route('/places/:place_id')
             res.json(place);
         });
     })
-    .put(function(req, res) {
+    .put(passport.authenticate('adminJWT', { session: false }), function(req, res) {
         Place.findById(req.params.place_id, function(err, place) {
             if (err) res.send(err);
             place.name = req.body.name;
@@ -46,7 +46,7 @@ router.route('/places/:place_id')
 
         });
     })
-    .delete(function(req, res) {
+    .delete(passport.authenticate('adminJWT', { session: false }), function(req, res) {
         Place.remove({_id: req.params.place_id}, function(err, message) {
             if (err) res.send(err);
             res.json({ message: 'Successfully deleted place!' });

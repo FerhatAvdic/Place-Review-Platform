@@ -12,7 +12,7 @@ router.route('/reviews')
             res.json(reviews);
         });
     })
-    .post(function(req, res) { // CREATE NOT APPROVED
+    .post(passport.authenticate('userJWT', { session: false }), function(req, res) { 
       var newReview = new Review({
         user: req.body.user,
         rating: req.body.rating,
@@ -33,7 +33,7 @@ router.route('/reviews/:review_id')
             res.json(review);
         });
     })
-    .put(function(req, res) {
+    .put(passport.authenticate('userJWT', { session: false }),function(req, res) {
         Review.findById(req.params.review_id, function(err, review) {
             if (err) res.send(err);
             review.user = req.body.user;
@@ -48,7 +48,7 @@ router.route('/reviews/:review_id')
 
         });
     })
-    .delete(function(req, res) {
+    .delete(passport.authenticate('userJWT', { session: false }), function(req, res) {
         Review.remove({_id: req.params.review_id}, function(err, message) {
             if (err) res.send(err);
             res.json({ message: 'Successfully deleted review!' });

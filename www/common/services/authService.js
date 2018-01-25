@@ -34,16 +34,16 @@
         function Login(username, password, callback) {
             $http.post(api +'authenticate', { username: username, password: password })
                 .then(function (response) {
-                    console.log("response",response);
+                    //console.log("response",response);
                     // login successful if there's a token in the response
-                    console.log("response.data.token", response.data.token);
+                    //console.log("response.data.token", response.data.token);
                     if (response.data.token) {
                         // store username and token in local storage to keep user logged in between page refreshes
                         $localStorage.currentUser = { user: response.data.user, token: response.data.token };
 
                         // add jwt token to auth header for all requests made by the $http service
                         $http.defaults.headers.common.Authorization = response.data.token;
-                        console.log("Authorization header: ", $http.defaults.headers.common.Authorization);
+                        //console.log("Authorization header: ", $http.defaults.headers.common.Authorization);
                         // execute callback with true to indicate successful login
                         callback(true);
                     } else {
